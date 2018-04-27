@@ -9,6 +9,8 @@ import random
 
 
 # 随机颜色
+
+
 def randomColor():
     r = str(random.choice(range(0, 256)))
     g = str(random.choice(range(0, 256)))
