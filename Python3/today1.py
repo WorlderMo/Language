@@ -6,6 +6,7 @@ for i in range(line):
     mylist = list(map(int, sys.stdin.readline().split()))
     numList.append(mylist)
 
+#
 cyclic = []
 numSort = []
 for i in range(line):
