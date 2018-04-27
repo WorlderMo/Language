@@ -1,0 +1,11 @@
+/Users/worlder/Documents/Language/C#/CSharpProject/bin/Debug/netcoreapp2.0/CSharpProject.deps.json
+/Users/worlder/Documents/Language/C#/CSharpProject/bin/Debug/netcoreapp2.0/CSharpProject.runtimeconfig.json
+/Users/worlder/Documents/Language/C#/CSharpProject/bin/Debug/netcoreapp2.0/CSharpProject.runtimeconfig.dev.json
+/Users/worlder/Documents/Language/C#/CSharpProject/bin/Debug/netcoreapp2.0/CSharpProject.dll
+/Users/worlder/Documents/Language/C#/CSharpProject/bin/Debug/netcoreapp2.0/CSharpProject.pdb
+/Users/worlder/Documents/Language/C#/CSharpProject/obj/Debug/netcoreapp2.0/CSharpProject.csprojResolveAssemblyReference.cache
+/Users/worlder/Documents/Language/C#/CSharpProject/obj/Debug/netcoreapp2.0/CSharpProject.csproj.CoreCompileInputs.cache
+/Users/worlder/Documents/Language/C#/CSharpProject/obj/Debug/netcoreapp2.0/CSharpProject.AssemblyInfoInputs.cache
+/Users/worlder/Documents/Language/C#/CSharpProject/obj/Debug/netcoreapp2.0/CSharpProject.AssemblyInfo.cs
+/Users/worlder/Documents/Language/C#/CSharpProject/obj/Debug/netcoreapp2.0/CSharpProject.dll
+/Users/worlder/Documents/Language/C#/CSharpProject/obj/Debug/netcoreapp2.0/CSharpProject.pdb

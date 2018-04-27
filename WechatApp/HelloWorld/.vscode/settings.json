@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.cs": "csharp",
+        "*.sh": "shellscript",
+        "*.wxml": "html",
+        "*.wxss": "css"
+    }
+}
