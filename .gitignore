@@ -1,2 +1,6 @@
 Android/
 .DS_Store
+.idea
+.exe
+.out
+.class

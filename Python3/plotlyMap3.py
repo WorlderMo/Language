@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Date    : 2018-04-07 22:24:43
 # @Author  : mohailang (1198534595@qq.com)
@@ -18,7 +17,8 @@ def Map3():
     # 存放每个国家的星巴克数量
     countryNum = [country_count[key] for key in country_count]
     # 转换国家代码
-    countryOfThreeLettersList = [threeCountryCode[key] for key in country_count]
+    countryOfThreeLettersList = [threeCountryCode[key]
+                                 for key in country_count]
 
     data = [dict(
         type='choropleth',
