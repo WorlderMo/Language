@@ -1,18 +1,16 @@
+# -*- coding: utf-8 -*-
+# @Author  : mohailang (1198534595@qq.com)
 
-class Solution:
-    """
-    @param prices: Given an integer array
-    @return: Maximum profit
-    """
 
+class Solution(object):
     def maxProfit(self, prices):
-        # write your code here
-        total = 0
-        low, high = 0, 0
-        for x in prices:
-            if x > high:
-                high = x
-            else:
-                total += high - low
-                high, low = x, x
-        return total + high - low
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        profit = 0
+        for i in range(1, len(prices)):
+            # greedy的思想，第一天买进，第二天卖出
+            # 如果亏本就不买也不卖，如果赚就买就卖
+            profit += max(0, prices[i]-prices[i-1])
+        return profit
