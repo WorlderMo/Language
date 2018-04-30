@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Date    : 2018-03-29 09:32:46
 # @Author  : mohailang (1198534595@qq.com)
