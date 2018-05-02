@@ -1,3 +1,4 @@
-ff = {"a": 1, "b": 2, "c": 3}
-if "a" in ff.keys():
+a = [1, 2, 3, 4]
+b = 2
+if b in a:
     print("yes")
