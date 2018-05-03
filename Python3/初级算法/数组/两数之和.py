@@ -9,7 +9,7 @@ class Solution:
         :type target: int
         :rtype: List[int]
         """
-        # 这道题不建议使用暴力搜索，可以使用map映射是想，边遍历边查找，时间复杂度为O(n)
+        # 这道题不建议使用暴力搜索，可以使用map映射思想，边遍历边查找，时间复杂度为O(n)
         hashDict = {}
         length = len(nums)
         for index in range(length):

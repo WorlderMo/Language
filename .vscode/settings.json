@@ -1,4 +1,5 @@
 {
     "editor.fontFamily": "Source Code Pro",
     "python.pythonPath": "/usr/local/bin/python3",
+    "editor.minimap.maxColumn": 120,
 }
