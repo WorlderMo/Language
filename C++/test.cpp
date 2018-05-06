@@ -3,12 +3,26 @@
 @Author  : mohailang (1198534595@qq.com)
 *******************************************************/
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <dirent.h>
 #include <string.h>
-int main(int argc, char const *argv[])
+void print_usage(void);
+
+int main(int argc, char *argv[])
 {
-    char a[12] = "111";
-    char b[21] = "22ssss";
-    strcpy(a, b);
+    DIR *dir = NULL;
+    struct dirent *ptr = NULL;
+    struct stat *buf;
+    char path[512] = "/Users/worlder/Documents/Language/C++";
+    dir = opendir(path);
+    char a[12] = "AAAAAA";
+    while ((ptr = readdir(dir)) != NULL)
+    {
+        printf("%s\n", ptr->d_name);
+    }
+    strcat(a, ptr->d_name);
     printf("%s", a);
 
     return 0;

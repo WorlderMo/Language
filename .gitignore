@@ -1,3 +1,4 @@
+*
 Android/
 .DS_Store
 .idea
@@ -6,4 +7,3 @@ Android/
 .class
 PHP/.DS_Store
 PHP/.DS_Store
-exec

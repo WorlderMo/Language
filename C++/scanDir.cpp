@@ -72,25 +72,33 @@ int scanDir(char *path, char *pattern)
             // 如果文件路径最后不带斜杠/,则加上去
             if (path[strlen(path) - 1] != '/')
                 strcat(file_path, "/");
-            // 构建完整的文件名
+            // 给每一个文件构建完整的文件名
             strcat(file_path, ptr->d_name);
             // 当获取文件信息失败的时候终止程序运行
             assert(stat(file_path, &buf) != -1);
             // 如果是普通常规文件
             if (S_ISREG(buf.st_mode))
             {
-                for (i = 0; i < strlen(file_path); i++)
+                // 匹配关键字
+                // for (i = 0; i < strlen(file_path); i++)
+                // {
+                //     if (file_path[i] == '/')
+                //     {
+                //         memset(file, 0, strlen(file));
+                //         j = 0;
+                //         continue;
+                //     }
+                //     file[j++] = file_path[i];
+                // }
+                // if (macth_regex(file, pattern) == 0)
+                // {
+                //     file_vector.push_back(file_path);
+                // }
+
+                // 匹配关键字
+                if (macth_regex(ptr->d_name, pattern) == 0)
                 {
-                    if (file_path[i] == '/')
-                    {
-                        memset(file, 0, strlen(file));
-                        j = 0;
-                        continue;
-                    }
-                    file[j++] = file_path[i];
-                }
-                if (macth_regex(file, pattern) == 0)
-                {
+                    // 匹配成功就放进vector
                     file_vector.push_back(file_path);
                 }
             }
