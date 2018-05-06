@@ -8,22 +8,25 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <string.h>
-void print_usage(void);
+#include <vector>
+#include <iostream>
 
-int main(int argc, char *argv[])
+using namespace std;
+vector<int> a;
+vector<int> b;
+int main(void)
 {
-    DIR *dir = NULL;
-    struct dirent *ptr = NULL;
-    struct stat *buf;
-    char path[512] = "/Users/worlder/Documents/Language/C++";
-    dir = opendir(path);
-    char a[12] = "AAAAAA";
-    while ((ptr = readdir(dir)) != NULL)
-    {
-        printf("%s\n", ptr->d_name);
-    }
-    strcat(a, ptr->d_name);
-    printf("%s", a);
+    a.push_back(1);
+    a.push_back(2);
+    a.push_back(3);
 
+    b.push_back(4);
+    b.push_back(5);
+    b.push_back(6);
+
+    b.insert(b.begin(), a.begin(), a.end());
+
+    for (int i = 0; i < b.size(); i++)
+        cout << b[i];
     return 0;
 }
