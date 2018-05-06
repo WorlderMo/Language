@@ -8,3 +8,5 @@ Android/
 PHP/.DS_Store
 PHP/.DS_Store
 */.gitignore
+.DS_Store
+C++/.DS_Store

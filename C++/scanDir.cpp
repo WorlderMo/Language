@@ -144,7 +144,7 @@ int main(int argc, char const *argv[])
         cout << "文件大小: ";
         cout << fileSize_vector[i];
         cout << "  ";
-        cout << "时间: ";
+        cout << "最后修改时间: ";
         cout << fileTime_vector[i] << endl;
     }
     return 0;
