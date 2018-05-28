@@ -1,0 +1,29 @@
+1.新建项目：django-admin.py startproject project_name
+2.新建app:
+    python manage.py startapp app_name
+3. 创建数据库表 或 更改数据库表或字段:
+    (1)创建更改的文件：python manage.py makemigrations
+    (2)将生成的py文件应该到数据库,同步数据库：python manage.py migrate
+    (这两行命令就会对我们的models.py 进行检测，自动发现需要更改的，应用到数据库中去)
+4.Django 项目环境终端:
+    python manage.py shell
+5.在 views.py 中定义视图函数即网页内容, 然后在 urls.py 中定义视图函数相关的 URL(即规定 访问什么网址对应什么内容), 用正则表达式匹配
+6.url中的name相当于给网址取了个名字，在views.py中的视图函数可以使用render渲染模板返回，其中 name还对应相应的HTML文件
+7.不要写死网址，应该使用灵活的方式：
+    不带参数的：
+    { % url 'name' % } # 模板套用
+    带参数的：参数可以是变量名
+    { % url 'name' 参数 % }
+8.对应的渲染模板定义在app下的templates中，要在setting.py中install
+9.数据库创建对象：classname.objects.create()
+  获取对象：classname.object.get()
+10.在定义Model(数据库)的时候建议写一个__unicode__ 函数(或 __str__函数)，以在网页显示想要显示的数据,model.py 就是写数据库的模型
+11.兼容2和3：
+from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
+这样可以使python2像python3一样处理Unicode字符
+语法糖：@python_2_unicode_compatible
+12.每个app都可以单独设置一个数据库(在setting.py中设置)
+13.{% block %}块标记，会覆盖父模板的块内容
+14.model在admin.py中注册就可以在管理页面被管理，admin.site.register()
+15.所有针对内部 URL 的 POST 表单都应该使用 {% csrf_token %} 模板标签。

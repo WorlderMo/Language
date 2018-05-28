@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.css">
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+    <!--vue-->
+    <script type="text/javascript" src="/static/js/vue.js"></script>
+    <script type="text/javascript" src="/static/js/vue-router.js"></script>
+    <!--csrf token-->
+    <script type="text/javascript" src="/static/js/csrf.js"></script>
+    <title>
+        {% block title %} 首页 {% endblock %} - WQSiteNavigator
+    </title>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <div class="nav-header">
+                <a class="navbar-brand" href="#">WQSiteNavigator</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">待办事项</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="#">当前用户:{{ request.user.name }}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            个人中心
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">定制工具</a>
+                            </li>
+                            <li>
+                                <a href="#">?</a>
+                            </li>
+                            <li>
+                                <a href="#">?</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/accounts/profile/">修改个人信息</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/accounts/logout/">登出</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="/accounts/login/">登录</a>
+                    </li>
+                    <li>
+                        <a href="/accounts/register/">注册</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container container-center jumbotron">
+        <div class="col-md-8 col-sm-offset-4">
+            {% block content %}
+            <div id="app" class="form-group">
+                <p class="form-control" v-text="aaa"></p>
+                <span>Input here: </span>
+                <input class="form-control" v-model="aaa">
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+    {% block vuejs %}
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                email: '{{ request.user.email }}',
+                name: '{{ request.user.name }}',
+                sex: '{{ request.user.sex }}',
+                phone: '{{ request.user.phone }}',
+                birthday: '{{ request.user.birthday }}',
+            },
+            methods: {
+                submit() {
+                    data_to_send = {
+                        name: this.name,
+                        sex: this.sex,
+                        birthday: this.birthday,
+                        phone: this.phone,
+                    };
+                    console.log(data_to_send);
+                    data_to_send = JSON.stringify(data_to_send);
+                    console.log(data_to_send);
+
+                    $.post('/accounts/profile/', data_to_send,
+                        function (r, err) {
+                            if (err === 'success') {
+                                alert('修改已保存!');
+                                return location.assign('/');
+                            } else {
+                                return console.log(err);
+                            }
+                        });
+                },
+            },
+        });
+    </script> {% endblock %}
+
+</body>
+
+</html>
