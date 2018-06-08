@@ -1,6 +1,6 @@
 {
     "editor.fontFamily": "Source Code Pro",
-    "python.pythonPath": "/usr/local/bin/python",
+    "python.pythonPath": "/usr/local/bin/python3",
     "editor.minimap.maxColumn": 120,
     // 使用三指横扫在打开的文件之间导航
     "workbench.editor.swipeToNavigate": true,
