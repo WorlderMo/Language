@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto" style="position: relative;right: -350px">
+                <h2 class="mb-4" style="position: center">填写订单信息</h2>
+                <br>
+                <br>
+            </div>
+
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <form action="{% url 'orderMessages' %}" id="orderForm" method="post" role="form" target="_self">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-12 col-md-3">
+                            <a  class="navbar-brand" style="position: relative;right: -50px">收货人姓名</a>
+                        </div>
+                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                           <input name="customerName"  class="form-control form-control-lg" placeholder="输入收货人姓名">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3">
+                            <a class="navbar-brand" style="position: relative;right: -50px">收货人电话</a>
+                        </div>
+                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                            <input name="customerPhone"  class="form-control form-control-lg" placeholder="输入收货人电话">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3">
+                            <a class="navbar-brand" style="position: relative;right: -50px">收货人地址</a>
+                        </div>
+                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                            <input name="customerAddress"  class="form-control form-control-lg" placeholder="输入收货人地址">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3">
+                            <a class="navbar-brand" style="position: relative;right: -50px">代理人姓名</a>
+                        </div>
+                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                            <input name="orderName" type="email" class="form-control form-control-lg" value="{{ request.user.realName }}" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-12 col-md-3">
+                        <button type="submit" class="btn btn-block btn-lg btn-primary" style="position: relative;right: -280px">提交</button>
+                    </div>
+                    <br>
+                    <br>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
