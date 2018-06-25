@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/worlder/Documents/Language/C++/OodleSystem/main.cpp
+iostream
+-
+string
+-
+vector
+-
+sys/stat.h
+-
+regex.h
+-
+libgen.h
+-
+dirent.h
+-
+assert.h
+-
+string.h
+-
+stdio.h
+-
+stdlib.h
+-
+fstream
+-
+iomanip
+-
+unistd.h
+-
+
