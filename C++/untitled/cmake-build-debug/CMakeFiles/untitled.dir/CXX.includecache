@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/worlder/Documents/Language/C++/untitled/main.cpp
+stdio.h
+-
+sys/types.h
+-
+unistd.h
+-
+sys/wait.h
+-
+
