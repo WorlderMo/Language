@@ -236,15 +236,17 @@ try {
     JavaScript HTML DOM
 *************************/
 
+// HTML-DOM中，元素对象可以直接通过 "."来操作属性
+var srcvalue = element.src;
 
 // 当页面被加载时，浏览器会创建页面的文档对象模型（Document Object Model）
 
 // 1. 通过 id 查找 HTML元素,返回的该元素的对象形式
-var x = document.getElementById("elementId")
+var x = document.getElementById("elementId");
 // 2. 通过标签名查找 HTML 元素
-var y = x.getElementByTagName("p")    // 查找指定 ID 下的所有<p>元素
+var y = x.getElementByTagName("p");    // 查找指定 ID 下的所有<p>元素
 // 3. 通过类名找到 HTML元素
-var x = document.getElementsByClassName("classNames")
+var x = document.getElementsByClassName("classNames");
 // 得到需要的元素后，就可以使用getAttribute()来获取它的各个属性，用 setAttribute()来更改各个属性
 var z = x.getAttribute("title");
 
@@ -255,7 +257,7 @@ document.write("输出");
 // 2. 改变 HTML内容
 document.getElementById("elementId").innerHTML = "text";
 // 3. 改变 HTML属性
-document.getElementById("image").src = "mohailang.jpg"
+document.getElementById("image").src = "mohailang.jpg";
 
 
 // 改变 CSS: document.getElementById(id).style.property=新样式
@@ -264,7 +266,7 @@ document.getElementById("image").src = "mohailang.jpg"
 // JavaScript HTML DOM事件
 // 往一个 HTML事件属性添加 JavaScript 代码：onclick=JavaScript
 // 使用 HTML DOM来分配事件
-document.getElementById("elementId").onclick = function () { myfunction(a, b) }   // myfunction被分配给指定 ID 的 HTML 元素
+document.getElementById("elementId").onclick = function () { myfunction(a, b) };  // myfunction被分配给指定 ID 的 HTML 元素
 // onload 和 onunload 事件会在用户进入或离开页面时被触发。
 // onchange 事件:对于输入当鼠标离开这个事件或者按下 enter 键后，onchange对应的 JavaScript 就会执行，常用来对输入字段进行验证
 
@@ -286,15 +288,25 @@ document.getElementById("elementId").removeEventListener("click", myFunction);
 // JavaScript HTML DOM 元素 (节点)
 // 要创建新的 HTML 元素 (节点)需要先创建一个元素，然后在已存在的元素中添加它。
 // 1. appendChild()用于将新元素添加到尾部
-var para = document.createElement("tagName");// 创建元素
+var para = document.createElement("tagName");// 创建元素节点
 var node = document.createTextNode("这是一个新的text");// 为元素添加文本节点
 para.appendChild(node);// 为元素添加文本节点
 var element = document.getElementById("elementId");// 查找已存在的节点
 element.appendChild(para);// 添加到已存在的节点
-// 2. insertBefore()用于将新元素添加到开始位置
-var child = document.getElementById("elementId");// 查找原来的开始位置的元素
-element.insertBefore(para, child);
+// 2. insertBefore()用于将新元插入到现有元素的前面
+var targetElement = document.getElementById("elementId");// 查找原来的开始位置的元素
+targetElement.parentNode.insertBefore(newElement, targetElement);
+// 编写 insertAfter函数
+function insertAfter(newElement, targetElement) {
+    var parent = targetElement.parentNode;
+    if (parent.lastChild == targetElement) {
+        parent.appendChild(newElement);
+    } else {
+        parent.insertBefore(newElement, targetElement.nextSibling);
+    }
+}
 // removeChild()移除已存在的元素(需要知道父元素)
+// 父元素都可以通过 parentNode获得
 element.removeChild(child);
 // 或者：
 child.parentNode.removeChild(child);
@@ -314,6 +326,7 @@ var description = document.getElementById("description");
 var value = description.childNodes[0].nodeValue;
 // firstChild和 lastChild 属性：分别代表着 childNodes的第一个元素和最后一个元素
 var value = description.firstChild.nodeValue; // 等同于var value=description.childNodes[0].nodeValue;
+// nodeName 属性：节点的名称，比如<p>节点的 nodeName 就是是 p
 
 // JavaScript HTML DOM 集合(Collection)
 // getElementsByTagName() 方法返回 HTMLCollection 对象。
@@ -331,6 +344,19 @@ var myNodeList = document.querySelectorAll("selectors");
 
 // Window、Window Screen、Window Location、Window History、Navigator
 
+// 网页加载完毕时会触发一个 onload 时间，这个事件与 window 对象相关联
+// 绑定 JavaScript 函数到 onload 事件处理函数中
+function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+        window.onload = func;
+    } else {
+        window.onload = function () {
+            oldonload();
+            func();
+        }
+    }
+}
 // JavaScript 弹窗(三者都可以不带上window对象)
 // 1. 警告框
 window.alert("警告");
@@ -338,6 +364,16 @@ window.alert("警告");
 window.confirm("确认");
 // 3. 提示框
 window.prompt("请输入你的名字", "mohailang");
+
+// 创建新的窗口
+// URL: 打开新窗口的 URL 地址
+// windowName: 新窗口的名字
+// feature：新窗口的各种属性，以字符串形式
+window.open(URL, windowName, feature)
+
+// "javascript:"伪协议：通过一个连接来调用 JavaScript 函数
+{/* <a href="javascript:function()">伪协议</a> */ }
+// 使用伪协议的做法并不好
 
 // JavaScript计时事件
 // setInterval()间隔指定的毫秒数不停地执行指定的代码，第一个参数时函数，第二个参数时间隔的毫秒数
@@ -357,3 +393,49 @@ var x = document.cookie;
 
 
 // JavaScript的一些简单有用的实例：http://www.runoob.com/js/js-examples.html
+
+
+// 可以对 JavaScript 脚本进行压缩，精简副本在文件名中加上 min 字样
+
+
+
+/**************
+ *  Ajax
+ *************/
+
+// XMLHttpRequest用于在后台和服务器交换数据
+
+// 对象检测
+var xmlhttp;
+if (window.XMLHttpRequest) {
+    // 所有现代浏览器创建 XMLHttpRequest对象
+    xmlhttp = new XMLHttpRequest();
+} else {
+    // IE5,IE6浏览器创建 ActiveX对象
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+// 使用 XMLHttpRequest对象的 open()和 send()来将请求发送到服务器
+xmlhttp.open(method, url, async);
+// method: GET 请求或者 POST请求
+// url:服务器上的文件
+// async: true(异步)、false(同步)
+xmlhttp.send("string");     // string仅用于 POST请求
+
+// 使用 XMLHttpRequest对象的 responseText 或者 responseXML 属性来获得来自服务器的响应
+// responseText 属性：获得字符串形式的响应数据
+// responseXML 属性：获取 XML 形式的响应格式
+var text = xmlhttp.responseText;
+var xml = xmlhttp.responseXML;
+
+// 在 onreadystatechange 事件中，规定了当服务器响应已做好被处理的准备时所执行的任务
+// onreadystatechange:存储函数，每当 readyState 属性改变时，就会调用该函数
+// readyState:存有 XMLHttpRequest的状态，从0到4发生变化
+// 0:请求未初始化；1：服务器连接已建立；2：请求已接收；3：请求处理中；4：请求已完成，且响应已就绪。
+// status: 200:"OK"; 404:未找到页面
+xmlhttp.onreadystatechange = function () {
+    // 当 readyState==4且 status==200时，表示响应已就绪
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        document.getElementById("elementId").innerHTML = xmlhttp.responseText;
+    }
+}
