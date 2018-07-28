@@ -339,6 +339,8 @@ var value = description.childNodes[0].nodeValue;
 // firstChild和 lastChild 属性：分别代表着 childNodes的第一个元素和最后一个元素
 var value = description.firstChild.nodeValue; // 等同于var value=description.childNodes[0].nodeValue;
 // nodeName 属性：节点的名称，比如<p>节点的 nodeName 就是是 p
+// 元素节点的下一个节点(同级节点，而不是子节点)可以使用nextSibling 来获得
+var nextElement = element.nextSibling
 
 // JavaScript HTML DOM 集合(Collection)
 // getElementsByTagName() 方法返回 HTMLCollection 对象。
@@ -466,3 +468,12 @@ xmlhttp.onreadystatechange = function () {
 // 当需要使用一个中间带减号的 CSS 属性（font-family）的时候，DOM 要求用驼峰命名法(fontFamily)
 // 利用 style 属性检测出元素的样式
 var color = element.style.color;
+// 也可以修改元素的样式
+element.style.fontFamily = "Times";
+// 通过 className属性得到一个元素的 class 属性
+var classAttr = element.className;
+// 改变样式最好选择去更新 className属性，而不是去直接更新 style 对象的有关属性
+
+
+// 用 JavaScript实现动画效果
+// setTimeout 能够让某个函数经过一段预定的时间之后才开始执行
