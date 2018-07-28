@@ -24,11 +24,11 @@ function prepareGallery() {
         return false;
     }
 
-    var gallery=document.getElementById("imagegallery");
-    var links=gallery.getElementsByTagName("a");
+    var gallery = document.getElementById("imagegallery");
+    var links = gallery.getElementsByTagName("a");
 
     for (let i = 0; i < links.length; i++) {
-        links[i].onclick=function () {
+        links[i].onclick = function () {
             showPic(this);
             return false;
         }
@@ -44,17 +44,17 @@ function addLoadEvent(func) {
         window.onload = function () {
             oldonload();
             func();
-        }
+        };
     }
 }
 
 
 // 编写 insertAfter函数
-function insertAfter(newElement,targetment) {
-    var parent=targetElement.parentNode;
-    if (parent.lastChild==targetElement) {
+function insertAfter(newElement, targetment) {
+    var parent = targetElement.parentNode;
+    if (parent.lastChild == targetElement) {
         parent.appendChild(newElement);
-    }else{
+    } else {
         parent.insertBefore(newElement, targetElement.nextSibling);
     }
 }

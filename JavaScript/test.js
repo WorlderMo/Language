@@ -1,8 +1,12 @@
-Array.prototype.myUcase = function () {
-    for (i = 0; i < this.length; i++) {
-        this[i] = this[i].toUpperCase();
+function myFunction(arg1, arg2) {
+    this.firstName = arg1;
+    this.lastName = arg2;
+
+    function changeName(name) {
+        this.lastName = name;
     }
+    this.changeName = changeName;
 }
-a = ["a", "b", "c"]
-a.myUcase()
-console.log(a)
+// This 创建了新的对象
+var x = new myFunction("John", "Doe");
+console.log(x.firstName); // 返回 "John"

@@ -4,4 +4,11 @@
     "editor.minimap.maxColumn": 120,
     // 使用三指横扫在打开的文件之间导航
     "workbench.editor.swipeToNavigate": true,
+    "cSpell.words": [
+        "adc",
+        "baidu",
+        "ss"
+    ],
+    "cSpell.language": "en",
+    "git.ignoreLimitWarning": true,
 }
