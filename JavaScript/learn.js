@@ -16,6 +16,8 @@ variable = 1;
 // 具有 length属性
 var str = "mohailang";
 var len = str.length;
+// parseInt()可以把字符串里的数值信息提取出来(parseFloat())
+var intNum = parseInt("520ssss"); // 会提取出520这个数值返回给 intNum
 // 在字符串中查找字符串: 字符串使用 indexOf() 来定位字符串中某一个指定的字符首次出现的位置
 var n = str.indexOf("hailang");
 // match()函数用来查找字符串中特定的字符，并且如果找到的话，则返回这个字符。
@@ -58,13 +60,13 @@ var object = Object();
 //或者：类似于Python的字典
 var object = {
     name: "mohailang",
-    methonName: function () {
+    methodName: function () {
         return this.name;
     }
 };
 name = object.name;
 name = object["name"];
-object.methonName(); // 调用对象方法
+object.methodName(); // 调用对象方法
 
 
 // 操作符：可以使用++
@@ -76,6 +78,7 @@ var string = "mo" + "hailang";
 // 函数变量的作用域：
 // 如果在某个函数中使用了 var声明变量,那个变量就将视为一个局部变量，否则就视为一个全局变量
 // let声明的变量只在其声明的块或者字块中可用，而 var的作用是整个封闭函数
+// 用 window 全局对象来声明一个全局变量：window.var
 function myfunction(a, b) {
     var x = 1; // 作用域为 myfunction
     if (true) {
@@ -228,7 +231,7 @@ var pattern = new RegExp("lang") // 此时 pattern等同于 /lang/
 // try-throw-catch
 try {
     if (1 < 2) {
-        throw "1<2"
+        throw "1<2";
     }
 } catch (error) { // error 为throw抛出的错误
     console.log(error);
@@ -459,7 +462,7 @@ xmlhttp.onreadystatechange = function () {
 };
 
 // 回调函数：回调函数是一个作为变量传递给另外一个函数的函数，它在主体函数执行完之后执行
-// function A 有一个一个参数function B,function B会在function A 执行完之后被调用执行
+// function A 有一个一个参数function B,function B 会在function A 执行完之后被调用执行`
 
 // hijax: 渐进增强的 ajax
 
@@ -477,3 +480,6 @@ var classAttr = element.className;
 
 // 用 JavaScript实现动画效果
 // setTimeout 能够让某个函数经过一段预定的时间之后才开始执行
+variable = setTimeout(handler, timeout);
+// 取消等待队列中的某个函数
+clearTimeout(variable);

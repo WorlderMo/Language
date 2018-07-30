@@ -4,84 +4,84 @@
 #define OK 1
 #define ERROR 0
 typedef int ElemType;
-typedef int Status;  //StatusÊÇº¯ÊıµÄÀàĞÍ£¬ÆäÖµÊÇº¯Êı½á¹ûµÄ×´Ì¬´úÂë£¬ÈçOKµÈ
+typedef int Status; //Statusæ˜¯å‡½æ•°çš„ç±»å‹ï¼Œå…¶å€¼æ˜¯å‡½æ•°ç»“æœçš„çŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰
 typedef struct Node
 {
     ElemType data;
     struct Node *next;
-}Node;
-typedef struct Node *LinkList;  //¶¨ÒåLinkList
+} Node;
+typedef struct Node *LinkList; //å®šä¹‰LinkList
 Status SetList(LinkList *L)
 {
     LinkList cur, pre, head, p;
     int n;
-    printf("ÇëÊäÈëÁ´±íµÄ³¤¶È:\n");
+    printf("è¯·è¾“å…¥é“¾è¡¨çš„é•¿åº¦:\n");
     scanf("%d", &n);
-    cur = *L = (struct Node *)malloc(sizeof(Node));  //¿ª±ÙÒ»¸öĞÂµÄ¿Õ¼ä¸øÍ·½áµã
-    printf("ÇëÊäÈëÁ´±íÊı¾İ£º\n");
-    cur = *L;  //preÎªÖ¸ÏòÎ²²¿µÄ½áµã
+    cur = *L = (struct Node *)malloc(sizeof(Node)); //å¼€è¾Ÿä¸€ä¸ªæ–°çš„ç©ºé—´ç»™å¤´ç»“ç‚¹
+    printf("è¯·è¾“å…¥é“¾è¡¨æ•°æ®ï¼š\n");
+    cur = *L; //preä¸ºæŒ‡å‘å°¾éƒ¨çš„ç»“ç‚¹
     scanf("%d", &cur->data);
     head = cur;
     for (int i = 1; i < n; i++)
     {
-        pre = cur;  //½«ĞÂÉú³ÉµÄ½áµã×÷ÎªÏÂÒ»¸ö½áµãµÄÇ°Ò»¸ö½áµã
-        cur = (Node *)malloc(sizeof(Node));  //Éú³ÉĞÂ½áµã
+        pre = cur;                          //å°†æ–°ç”Ÿæˆçš„ç»“ç‚¹ä½œä¸ºä¸‹ä¸€ä¸ªç»“ç‚¹çš„å‰ä¸€ä¸ªç»“ç‚¹
+        cur = (Node *)malloc(sizeof(Node)); //ç”Ÿæˆæ–°ç»“ç‚¹
         scanf("%d", &cur->data);
-        pre->next = cur;  //µ±ĞÂÉú³ÉµÄ½áµã¸³Öµ¸øÇ°Ò»¸ö½áµãµÄnext
+        pre->next = cur; //å½“æ–°ç”Ÿæˆçš„ç»“ç‚¹èµ‹å€¼ç»™å‰ä¸€ä¸ªç»“ç‚¹çš„next
     }
     cur->next = NULL;
-    printf("ÏÖÔÚµÄÁ´±íÊÇÕâÑùµÄ£º\n");
-    for(cur = head; cur; pre = cur,cur = cur->next)
-        printf ("%d ", cur->data);
+    printf("ç°åœ¨çš„é“¾è¡¨æ˜¯è¿™æ ·çš„ï¼š\n");
+    for (cur = head; cur; pre = cur, cur = cur->next)
+        printf("%d ", cur->data);
     printf("\n");
     return OK;
 }
-Status GetElem(LinkList L)  //»ñµÃÔªËØ²Ù×÷
+Status GetElem(LinkList L) //è·å¾—å…ƒç´ æ“ä½œ
 {
     int i, j;
     ElemType e;
     LinkList p;
-    printf("ÇëÊäÈëÄãÒª»ñµÃÔªËØµÄÏÂ±ê£º\n");
+    printf("è¯·è¾“å…¥ä½ è¦è·å¾—å…ƒç´ çš„ä¸‹æ ‡ï¼š\n");
     scanf("%d", &i);
-    p = L->next;  //ÈÃpÖ¸ÏòÁ´±íLµÄµÚÒ»¸ö½áµã
-    j = 1;  //jÎª¼ÆÊ±Æ÷
-    while(p && j < i)  //p²»Îª¿Õ¶øÇÒ¼ÆÊ±Æ÷j»¹Ã»ÓĞµÈÓÚiÊ±£¬Ñ­»·¼ÌĞø
+    p = L->next;       //è®©pæŒ‡å‘é“¾è¡¨Lçš„ç¬¬ä¸€ä¸ªç»“ç‚¹
+    j = 1;             //jä¸ºè®¡æ—¶å™¨
+    while (p && j < i) //pä¸ä¸ºç©ºè€Œä¸”è®¡æ—¶å™¨jè¿˜æ²¡æœ‰ç­‰äºiæ—¶ï¼Œå¾ªç¯ç»§ç»­
     {
-        p = p->next;  //ÈÃpÖ¸ÏòÏÂÒ»¸ö½áµã
+        p = p->next; //è®©pæŒ‡å‘ä¸‹ä¸€ä¸ªç»“ç‚¹
         j++;
     }
-    if(!p || j > i)
-        return ERROR;  //µÚi¸ö½áµã²»´æÔÚ
+    if (!p || j > i)
+        return ERROR; //ç¬¬iä¸ªç»“ç‚¹ä¸å­˜åœ¨
     e = p->data;
-    printf("¹§Ï²Äã£¬Äã»ñµÃµÄµÚ%d¸öÔªËØÎª£º%d\n", i+1, e);
+    printf("æ­å–œä½ ï¼Œä½ è·å¾—çš„ç¬¬%dä¸ªå…ƒç´ ä¸ºï¼š%d\n", i + 1, e);
     return OK;
 }
-Status ListInsert(LinkList *L)  //²åÈëÔªËØ²Ù×÷
+Status ListInsert(LinkList *L) //æ’å…¥å…ƒç´ æ“ä½œ
 {
     int i, j;
     ElemType e;
     LinkList p, s;
-    printf ("ÇëÊäÈëÄãÒª²åÈëÔªËØµÄÏÂ±ê£º\n");
+    printf("è¯·è¾“å…¥ä½ è¦æ’å…¥å…ƒç´ çš„ä¸‹æ ‡ï¼š\n");
     scanf("%d", &i);
-    printf ("ÇëÊäÈëÄãÒª²åÈëµÄÔªËØÊı¾İ£º\n");
+    printf("è¯·è¾“å…¥ä½ è¦æ’å…¥çš„å…ƒç´ æ•°æ®ï¼š\n");
     scanf("%d", &e);
-    p = *L;  //°ÑÁ´±íµÄµÚÒ»¸ö½áµã¸³Öµ¸øp
+    p = *L; //æŠŠé“¾è¡¨çš„ç¬¬ä¸€ä¸ªç»“ç‚¹èµ‹å€¼ç»™p
     j = 1;
-    while (p && j < i)  //Ñ°ÕÒµÚi-1¸ö½áµã,
+    while (p && j < i) //å¯»æ‰¾ç¬¬i-1ä¸ªç»“ç‚¹,
     {
         p = p->next;
         ++j;
     }
-    if(!p || j > i)
+    if (!p || j > i)
         return ERROR;
-    s = (LinkList)malloc(sizeof(Node));  //Éú³ÉĞÂµÄ½áµã
+    s = (LinkList)malloc(sizeof(Node)); //ç”Ÿæˆæ–°çš„ç»“ç‚¹
     s->data = e;
-    s->next = p->next;  //½«pµÄºóĞø½áµã¸³Öµ¸øsµÄºóĞø
-    p->next = s;  //½«s¸³Öµ¸øpµÄºóĞø
-    printf ("¹§Ï²Äã£¬²åÈëÊı¾İ³É¹¦\n");
+    s->next = p->next; //å°†pçš„åç»­ç»“ç‚¹èµ‹å€¼ç»™sçš„åç»­
+    p->next = s;       //å°†sèµ‹å€¼ç»™pçš„åç»­
+    printf("æ­å–œä½ ï¼Œæ’å…¥æ•°æ®æˆåŠŸ\n");
     p = *L;
-    printf("ÏÖÔÚµÄÁ´±íÊÇÕâÑùµÄ£º\n");
-    while(p)
+    printf("ç°åœ¨çš„é“¾è¡¨æ˜¯è¿™æ ·çš„ï¼š\n");
+    while (p)
     {
         printf("%d ", p->data);
         p = p->next;
@@ -89,31 +89,31 @@ Status ListInsert(LinkList *L)  //²åÈëÔªËØ²Ù×÷
     printf("\n");
     return OK;
 }
-Status ListDelete(LinkList *L)  //É¾³ıÔªËØ²Ù×÷
+Status ListDelete(LinkList *L) //åˆ é™¤å…ƒç´ æ“ä½œ
 {
     int i, j;
     ElemType e;
     LinkList p, q;
     p = *L;
     j = 1;
-    printf ("ÇëÊäÈëÄãÒªÉ¾³ıµÄÔªËØµÄÏÂ±ê£º\n");
-    scanf ("%d", &i);
-    while (p->next && j < i)  //±éÀúÑ°ÕÒµÚi-1¸ö½áµã
+    printf("è¯·è¾“å…¥ä½ è¦åˆ é™¤çš„å…ƒç´ çš„ä¸‹æ ‡ï¼š\n");
+    scanf("%d", &i);
+    while (p->next && j < i) //éå†å¯»æ‰¾ç¬¬i-1ä¸ªç»“ç‚¹
     {
         p = p->next;
         ++j;
     }
-    if(!(p->next) || j > i)
-        return ERROR;  //µÚi¸ö½áµã²»´æÔÚ
+    if (!(p->next) || j > i)
+        return ERROR; //ç¬¬iä¸ªç»“ç‚¹ä¸å­˜åœ¨
     q = p->next;
-    p->next = q->next;  //½«qµÄºóĞø¸³Öµ¸øpµÄºóĞø
+    p->next = q->next; //å°†qçš„åç»­èµ‹å€¼ç»™pçš„åç»­
     e = q->data;
-    printf("ÄãËùÉ¾³ıµÄÔªËØÎª£º%d\n", e);
+    printf("ä½ æ‰€åˆ é™¤çš„å…ƒç´ ä¸ºï¼š%d\n", e);
     free(q);
     p = *L;
-    printf ("¹§Ï²Äã£¬É¾³ıÊı¾İ³É¹¦\n");
-    printf("ÏÖÔÚµÄÁ´±íÊÇÕâÑùµÄ£º\n");
-    while(p)
+    printf("æ­å–œä½ ï¼Œåˆ é™¤æ•°æ®æˆåŠŸ\n");
+    printf("ç°åœ¨çš„é“¾è¡¨æ˜¯è¿™æ ·çš„ï¼š\n");
+    while (p)
     {
         printf("%d ", p->data);
         p = p->next;

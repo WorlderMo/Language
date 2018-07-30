@@ -1,5 +1,3 @@
-function a() {
-    return 2;
-}
-b = a();
-console.log(b)
+a = 123
+b = "sss" + a + "sss"
+console.log(b);
