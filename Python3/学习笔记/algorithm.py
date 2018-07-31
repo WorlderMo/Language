@@ -119,6 +119,142 @@ if __name__ == '__main__':
 # -*- 链表 end -*-
 
 
+# -* 图 begin -*
+a, b, c, e, f = range(5)
+# 邻接列表
+N = [
+    [b, c],
+    [a, c],
+    [a, b, e, f],
+    [c, f],
+    [c, e]
+]
+# 加权邻接字典
+N = [
+    {'b': 2, 'c': 3, 'f': 2},   # a
+    {'a': 2, 'c': 2},  # b
+    {'a': 3, 'b': 2, 'e': 4, 'f': 3},  # c
+    {'c': 4, 'f': 5},  # e
+    {'c': 3, 'e': 5}  # f
+]
+# 邻接集的字典表示法
+N = {
+    'a': set('bc'),
+    'b': set('a,c'),
+    'c': set('a,b,e,f'),
+    'e': set('c,f'),
+    'f': set('c,e')
+}
+# 邻接矩阵(用1和0来表示相关节点是否为当前节点的邻居)
+N = [
+    [0, 1, 1, 0, 1],
+    [1, 0, 1, 0, 0],
+    [1, 1, 0, 1, 1],
+    [0, 0, 1, 0, 1],
+    [0, 0, 1, 1, 0]
+]
+# 对不存在的边赋予无限大权值的加权矩阵
+inf = float('inf')
+N = [
+    [0, 1, 1, inf, 1],
+    [1, 0, 1, inf, inf],
+    [1, 1, 0, 1, 1],
+    [inf, inf, 1, 0, 1],
+    [inf, inf, 1, 1, 0]
+]
+# -*- 图  end -*-
+
+
+# -*- 二叉树 begin -*-
+class Node(object):
+    """节点类"""
+
+    def __init__(self, value=None, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+
+class Tree(object):
+    """定义二叉树类"""
+
+    def __init__(self):
+        self.root = Node()
+        self.nodeList = []  # 用以存放相对的父节点，用以开辟其子节点
+
+    def add(self, value):
+        """添加节点"""
+        node = Node(value)
+        if self.root.value == None:  # 判断树是否是空的
+            self.root = node
+            self.nodeList.append(self.root)
+        else:
+            parentNode = self.nodeList[0]  # 给nodeList里面相对的父节点添加其子节点
+            if parentNode.left == None:
+                parentNode.left = node
+                self.nodeList.append(parentNode.left)
+            else:
+                parentNode.right = node
+                self.nodeList.append(parentNode.right)
+                # 此时parentNode 已有两个节点，所以对它的构造完成，移除它
+                self.nodeList.append(0)
+
+    def frontSearch(self, root):
+        """递归前序遍历"""
+        if root == None:
+            return False
+        print(root.value),
+        self.frontSearch(root.left)
+        self.frontSearch(root.right)
+
+    def midSearch(self, root):
+        """递归中序遍历"""
+        if root == None:
+            return False
+        self.midSearch(root.left)
+        print(root.value),
+        self.midSearch(root.right)
+
+    def backSearch(self, root):
+        """递归后序遍历"""
+        if root == None:
+            return False
+        self.backSearch(root.left)
+        self.backSearch(root.right)
+        print(root.value)
+
+    def frontStack(self, root):
+        """利用堆栈前序遍历"""
+        if root == None:
+            return False
+        stack = []
+        node = root
+        while node or stack:
+            while node:
+                print(node.value)
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            node = node.right
+
+    def midStack(self, root):
+        """ 利用堆栈中序遍历"""
+        if root == None:
+            return False
+        stack = []
+        node = root
+        while node or stack:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            print(node.value)
+            node = node.right
+
+    def backStack(self, root):
+        """利用堆栈后序遍历"""
+
+
 # 冒泡排序
 # 1.比较相邻的元素。如果第一个比第二个大，就交换他们两个。
 # 2.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
