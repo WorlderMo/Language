@@ -247,7 +247,7 @@ try {
 *************************/
 
 // HTML-DOM中，元素对象可以直接通过 "."来操作属性
-var srcvalue = element.src;
+var srcValue = element.src;
 
 // 当页面被加载时，浏览器会创建页面的文档对象模型（Document Object Model）
 
@@ -278,7 +278,7 @@ document.getElementById("image").src = "mohailang.jpg";
 // 使用 HTML DOM来分配事件
 document.getElementById("elementId").onclick = function () {
     myfunction(a, b);
-}; // myfunction被分配给指定 ID 的 HTML 元素
+}; // myfunction 被分配给指定 ID 的 HTML 元素
 // onload 和 onunload 事件会在用户进入或离开页面时被触发。
 // onchange 事件:对于输入当鼠标离开这个事件或者按下 enter 键后，onchange对应的 JavaScript 就会执行，常用来对输入字段进行验证
 
@@ -343,7 +343,7 @@ var value = description.childNodes[0].nodeValue;
 var value = description.firstChild.nodeValue; // 等同于var value=description.childNodes[0].nodeValue;
 // nodeName 属性：节点的名称，比如<p>节点的 nodeName 就是是 p
 // 元素节点的下一个节点(同级节点，而不是子节点)可以使用nextSibling 来获得
-var nextElement = element.nextSibling
+var nextElement = element.nextSibling;
 
 // JavaScript HTML DOM 集合(Collection)
 // getElementsByTagName() 方法返回 HTMLCollection 对象。
@@ -483,3 +483,5 @@ var classAttr = element.className;
 variable = setTimeout(handler, timeout);
 // 取消等待队列中的某个函数
 clearTimeout(variable);
+// 可以通过给元素创建属性来间接相当于创建了一个只属于该元素的变量
+element.property = value;
