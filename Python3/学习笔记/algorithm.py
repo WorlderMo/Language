@@ -1,13 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Date    : 2018-04-09 13:03:04
 # @Author  : mohailang (1198534595@qq.com)
 
+
 # 在 Python 里，用 list对象以及其方法就可以简单实现堆栈和队列了
 # 但为了理解，还是用 Python 来模拟具体实现这两种数据结构
+# 栈的例子(具有反转属性）：匹配符号、浏览器回退、十进制转换为二进制
+# 队列的例子：模拟烫山芋游戏(围成圆圈)
 # -*- 队列、堆栈 begin -*-
-
-
 class Queue(object):
     """队列类: 先进先出"""
 
@@ -386,7 +387,7 @@ class Tree(object):
         """递归前序遍历"""
         if root == None:
             return False
-        print(root.value, end=' '),
+        print(root.value, end=' ')
         self.frontSearch(root.left)
         self.frontSearch(root.right)
 

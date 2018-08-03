@@ -1,3 +1,2 @@
-a = [1, None]
-b = ord('x')-ord('a')
-print(b)
+a = [1, 2, 3]
+print(a)

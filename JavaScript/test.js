@@ -1,3 +1,2 @@
-a = 123
-b = "sss" + a + "sss"
-console.log(b);
+a = [12]
+console.log(a);

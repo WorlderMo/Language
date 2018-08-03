@@ -1,4 +1,11 @@
+/*
+ * @Author: mohailang (1198534595@qq.com)
+ * @Date: 2018-07-20 15:24:58
+ * @Last Modified by: mohailang
+ * @Last Modified time: 2018-08-03 15:29:41
+ */
 "use strict"; // 这个语句声明使用 JavaScript 严格模式
+
 
 /*************************
     JavaScript基本语法
