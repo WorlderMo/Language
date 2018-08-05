@@ -2,7 +2,7 @@
  * @Author: mohailang (1198534595@qq.com)
  * @Date: 2018-07-20 15:24:58
  * @Last Modified by: mohailang
- * @Last Modified time: 2018-08-03 15:29:41
+ * @Last Modified time: 2018-08-05 15:08:33
  */
 "use strict"; // 这个语句声明使用 JavaScript 严格模式
 
@@ -44,18 +44,20 @@ var array = Array();
 var array = new Array();
 //或者:类似于Python的列表
 var array = [];
+// map() 方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+array.map(myFunction);
 // 当使用关联数组的时候，数组的方法和属性就不能再使用，否则会产生错误
 array["a"] = "aaa";
 array["b"] = "bbb";
 var n = array.length; // n的值只会是数组正常索引的个数，不会加上使用名字来索引的个数
 // 创建数组的新方法
-Array.prototype.myUcase = function () {
+Array.prototype.myUppercase = function () {
     for (let i = 0; i < this.length; i++) {
         this[i] = this[i].toUpperCase();
     }
 };
 var array1 = ["a", "b", "c"];
-array1.myUcase(); //调用新增的方法
+array1.myUppercase(); //调用新增的方法
 // 合并两个数组
 var array2 = ["d", "e"];
 var sumArray = array1.concat(array2);
@@ -259,7 +261,7 @@ var srcValue = element.src;
 // 当页面被加载时，浏览器会创建页面的文档对象模型（Document Object Model）
 
 // 1. 通过 id 查找 HTML元素,返回的该元素的对象形式
-var x = document.getElementById("elementId");
+var x = document.getElementById("elementId"); // 可以用$('#elementId')来代替
 // 2. 通过标签名查找 HTML 元素
 var y = x.getElementByTagName("p"); // 查找指定 ID 下的所有<p>元素
 // 3. 通过类名找到 HTML元素
@@ -432,6 +434,8 @@ var x = document.cookie;
  *************/
 
 // XMLHttpRequest用于在后台和服务器交换数据
+// DOMParser 可以将存储在字符串中的XML 或HTML源代码解析为一个 DOM文档
+// XMLHttpRequest  支持从URL 可寻址资源解析XML 和 HTML
 
 // 对象检测
 var xmlhttp;

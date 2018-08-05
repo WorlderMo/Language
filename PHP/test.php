@@ -140,7 +140,7 @@ function functionName($variable) {
 // 析构函数：void __destruct ( void )
 
 // 继承：PHP 使用关键字 extends 来继承一个类，PHP 不支持多继承，格式如下：
-class Child extends Parent {
+class Child extends Parents {
    // 代码部分
 }
 
@@ -148,7 +148,7 @@ class Child extends Parent {
 // 访问控制：与 java 的类似
 
 // 接口：使用接口（interface），可以指定某个类必须实现哪些方法，但不需要定义这些方法的具体内容。接口是通过 interface 关键字来定义的
-// 声明一个'iTemplate'接口
+// 声明一个iTemplate接口
 interface iTemplate
 {
     public function setVariable($name, $var);
