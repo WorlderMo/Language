@@ -1,2 +1,2 @@
-a = 1 && 0;
-console.log(a);
+a = String(1)
+console.log(typeof a);

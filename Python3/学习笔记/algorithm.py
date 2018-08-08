@@ -9,6 +9,7 @@
 # 栈的例子(具有反转属性）：匹配符号、浏览器回退、十进制转换为二进制
 # 队列的例子：模拟烫山芋游戏(围成圆圈)
 # -*- 队列、堆栈 begin -*-
+# 队列
 class Queue(object):
     """队列类: 先进先出"""
 
@@ -32,6 +33,7 @@ class Queue(object):
         return self.size() == 0
 
 
+# 栈
 class Stack (object):
     """堆栈类: 后进先出"""
 
@@ -59,6 +61,49 @@ class Stack (object):
         return self.size() == 0
 
 
+# 双端队列(回文检查)
+class deque(object):
+    """双端队列"""
+
+    def __init__(self):
+        self.items = []
+
+    def isEmpty(self):
+        return self.items == []
+
+    def addRear(self, item):
+        self.items.insert(0, item)
+
+    def addFront(self, item):
+        self.items.append(item)
+
+    def removeRear(self):
+        self.items.pop(0)
+
+    def removeFront(self):
+        self.items.pop()
+
+    def size(self):
+        return len(self.items)
+# -*- 栈、队列 end -*-
+
+
+# -*- 递归 begin-*-
+
+# 用栈帧来实现递归，每次递归都会为函数的本地变量创建一个作用域
+
+# 汉诺塔
+def move(n, from, buffer, to):
+    if n == 1:
+        print("move", n, "from", from, "to", to)
+    else:
+        move(n-1, from, to, buffer)
+        move(1, from, buffer, to)
+        move(n-1, buffer, from, to)
+
+# -*- 递归 end-*-
+
+
 # -*- 链表 begin -*-
 
 
@@ -70,6 +115,15 @@ class Node(object):
 
     def getData(self):
         return self.data
+
+    def getNext(self):
+        return self.next
+
+    def setData(self, newData):
+        self.data = newData
+
+    def setNext(self, newNext):
+        self.next = newNext
 
 
 # 定义链表操作类(所有节点都先经过 Node 类处理过)
@@ -87,14 +141,21 @@ class LinkedList(object):
             temp = temp.next
         return length
 
-    # 追加节点(传进来的是一个处理过的节点)
+    # 追加节点(传进来的是一个处理过的节点)（有序）
     def add(self, node):
         temp = self.head
         while temp.next is not None:
             temp = temp.next
         temp.next = node
 
+    # 这里还有一种时间复杂度更小的做法：每次添加节点都是追加载头结点的前面，新节点作为新的头结点（无序）
+    def add(self, item):
+        node = Node(item)
+        node.setNext(self.head)
+        self.head = node
+
     # 删除节点(关键是找到要删除节点的前一个节点)
+
     def delete(self, index):
         if index < 1 or index > self.getLen():
             print("index is out of range")

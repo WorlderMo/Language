@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Raphael Test</title>
+
+</head>
+
+<body>
+	<div id="my-canvas" style="width:140px;padding:0px;margin:0px;">
+	</div>
+	<!--some scripts-->
+	<script type="text/javascript" src="RaphaelTest/script/raphael.js">
+	</script>
+	<script type="text/javascript" src="../js/lib/raphael.min.js"></script>
+	<script type="text/javascript">
+		var scale, _pgsz, paper;
+		window.onload = function () {
+			//_pgsz=GetPageSize();
+			paper = Raphael("my-canvas", 944, 847);
+
+			//定义属性
+			var kv340789766 = {
+				fill: "none",
+				stroke: "#ff8000",
+				"stroke-width": 5.000000,
+				"stroke-dasharray": 0,
+			};
+			var kv336202256 = {
+				fill: "none",
+				stroke: "#ff8000",
+				"stroke-width": 4.000000,
+				"stroke-dasharray": 0,
+			};
+			var kv336202266 = {
+				fill: "none",
+				stroke: "#ff8000",
+				"stroke-width": 2.000000,
+				"stroke-dasharray": 0,
+			};
+			var kv33620224 = {
+				fill: "none",
+				stroke: "rgb(255,0,0)",
+				"stroke-width": 1.000000,
+				"stroke-dasharray": 0,
+			};
+			var text = {
+				fill: "#ffffff",
+				stroke: "#ffffff",
+				"stroke-width": 0.100000,
+				"font-size": "12.500000",
+				"font-family": "Simsun",
+			}
+			//背景
+			paper.rect(0, 0, 944, 847).attr({
+				fill: "rgb(0,0,0)"
+			});
+
+			//线路
+			paper.path("M 325.426954,207.999999 L 583.278616,207.999987").attr(kv340789766);
+			paper.path("M 50.000000,207.999999 L 325.426954,207.999999").attr(kv340789766);
+			paper.path("M 387.123162,595.539777 L 325.426949,595.539777").attr(kv336202256);
+			paper.path("M 415.123162,595.539777 L 482.945802,594.794718").attr(kv336202256);
+			paper.path("M 510.945802,594.794718 L 596.489065,594.794718").attr(kv336202256);
+			paper.path("M 732.906666,651.636489 L 732.906666,594.134007").attr(kv336202256);
+			paper.path("M 624.489065,594.794718 L 672.906667,594.612099").attr(kv336202256);
+			paper.path("M 732.906666,594.134007 L 672.906667,594.612099").attr(kv336202256);
+			paper.path("M 732.906666,594.134007 L 823.502826,594.134007").attr(kv336202266);
+			paper.path("M 823.502826,594.134007 L 823.502826,657.077478").attr(kv336202266);
+			paper.path("M 823.502826,594.134007 L 894.233285,594.134007 L 894.233285,656.696379").attr(kv336202266);
+			paper.path("M 609.395942,646.939908 L 672.906667,646.939908").attr(kv336202266);
+			paper.path("M 672.906667,697.174605 L 672.906667,646.939908").attr(kv336202266);
+			paper.path("M 672.906667,594.612099 L 672.906667,646.939908").attr(kv336202266);
+			paper.path("M 325.426944,207.999987 L 325.426944,363.015526").attr(kv336202256);
+			paper.path("M 325.426944,473.055596 L 325.426944,495.297685").attr(kv336202256);
+			paper.path("M 325.426944,595.539777 L 325.426944,509.297685").attr(kv336202256);
+
+			paper.path("M 609.395942,646.939908 L 577.240660,646.939908").attr(kv33620224);
+			paper.path("M 732.906666,651.636489 L 732.906666,660.782982").attr(kv33620224);
+			paper.path("M 672.906667,697.174605 L 672.906667,757.177158").attr(kv33620224);
+			paper.path("M 823.502826,657.077478 L 823.502826,660.475440").attr(kv33620224);
+			paper.path("M 894.233285,656.696379 L 894.233285,660.094338").attr(kv33620224);
+
+			//文字说明
+			paper.text(335.426949, 452.055602, "056").attr(text);
+			paper.text(489.945802, 584.794718, "主干线62#杆").attr(text);
+			paper.text(620.489065, 587.794718, "看守所支线1#杆").attr(text);
+			paper.text(411.123162, 588.539777, "主干线17#杆").attr(text);
+			paper.text(582.240660, 610.939908, "德州亨达铝业有限公司平原分公司").attr(text);
+			paper.text(737.906666, 696.782982, "德州市看守所").attr(text);
+			paper.text(677.906667, 793.177158, "德州亿鼎五金有限公司平原分公司").attr(text);
+			paper.text(828.502826, 696.475440, "德州市看守所1").attr(text);
+			paper.text(899.233285, 696.094338, "德州市看守所2").attr(text);
+			paper.text(2544.854539, 1247.687158, "110kV刘屯变电站").attr(text);
+			paper.text(331.426944, 561.218731, "刘").attr(text);
+			paper.text(331.426944, 574.518731, "于").attr(text);
+			paper.text(331.426944, 587.818731, "线").attr(text);
+			paper.text(464.352785, 192.999993, "10kVⅠ母线").attr(text);
+
+			var json = [{
+					type: "circle",
+					cx: 10,
+					cy: 10,
+					r: 5,
+					fill: "#fc0"
+				},
+				{
+					type: "rect",
+					x: 20,
+					y: 30,
+					width: 10,
+					height: 10,
+					fill: "#fc0"
+				},
+				{
+					type: "path",
+					pathString: "M 0,0 L 80,80"
+
+				}
+			];
+
+			var BK2020102 = paper.path("M 0.000000 0.000000 L 32.500000 0.000000 32.500000 17.7975000 0.000000 17.7975000Z").attr({
+				fill: "#ff0000",
+				stroke: "#ff0000",
+				"stroke-width": 1,
+				transform: "t309.126949,450.108102r90.000000"
+			});
+			var BK2020103 = paper.path("M 0.000000 0.000000 L 32.500000 0.000000 32.500000 17.7975000 0.000000 17.7975000Z").attr({
+				fill: "#ff0000",
+				stroke: "#ff0000",
+				"stroke-width": 1,
+				transform: "t480.645802,585.847218r179.292741"
+			});
+
+			paper.path("M 0.000000 0.000000 L 32.500000 0.000000 32.500000 17.7975000 0.000000 17.7975000Z").attr({
+				fill: "#ff0000",
+				stroke: "#ff0000",
+				"stroke-width": 1,
+				transform: "t594.189065,585.847218r359.727559"
+			});
+
+			/*paper.path("M 0.000000 0.000000 L 32.500000 0.000000 32.500000 17.7975000 0.000000 17.7975000Z").attr({
+				fill:"#ff0000",stroke:"#ff0000","stroke-width":1,transform:"t384.823162,586.592277r359.360751"
+			});*/
+			paper.path("M 0.000000 0.000000 L 26.200000 0.000000 26.200000 14.238000 0.000000 14.238000Z").attr({
+				fill: "#ff0000",
+				stroke: "#ff0000",
+				"stroke-width": 1,
+				transform: "t384.823162,586.592277r359.360751s1.25"
+			});
+
+
+			/*<symbol id="DC:2020302" desc="常闭刀闸" viewBox="0.000000 0.000000 17.615300 17.615300">
+			<path stroke="#ff0000" stroke-width="1" d="M 0.000000 0.000000 L 0.000000 9.692330"/>
+			<path d="M 0.077000 3.461670 L 12.000000 3.461670 12.000000 5.923000 0.077000 5.923000Z" style="fill:#ff0000;stroke:#ff0000;stroke-width:1"/>
+			<circle cx="14.961500" cy="4.730835" r="2.653830" stroke="#ff0000" stroke-width="1" fill="#000000"/>
+			</symbol>
+			<use x="314.705699" y="494.422688" width="22.019125" height="22.019125" transform="rotate(90.000000,325.426949,500.297688)" xlink:href="#DC:2020302"/>
+			*/
+			//x1,x2,x3为symbol组件
+			var x1 = paper.path("M 0.000000 0.000000 L 0.000000 9.692330").attr({
+				fill: "#ff0000",
+				stroke: "#ff0000",
+				"stroke-width": 1
+			});
+			var x2 = paper.path("M 0.077000 3.461670 L 12.000000 3.461670 12.000000 5.923000 0.077000 5.923000Z").attr({
+				fill: "#ff0000",
+				stroke: "#ff0000",
+				"stroke-width": 1
+			});
+			//10.72125,5.875,8.577,4.7
+			var x3 = paper.circle(14.961500, 4.730835, 2.653830).attr({
+				fill: "#000000",
+				stroke: "#ff0000",
+				"stroke-width": 1
+			});
+
+			//创建集合
+			var st1 = paper.set(x1, x2, x3);
+			//transform参数
+			//t314.705699,494.422688，按use标签的x，y值移动
+			//r90,10.72125,5.875，90为旋转角度，10.72125,5.875为旋转中心，由svg中transform的xy值减去use标签的xy值得到
+			//s1.25,1.25,0,0，1.25为放大倍数，由use标签的width除以viewBox的width得到
+			st1.transform("t314.705699,494.422688r90,10.72125,5.875s1.25,1.25,0,0");
+			st1 = st1.clone();
+
+
+
+			st1.transform("t314.705699,362.140535r90,10.72125,5.875s1.25,1.25,0,0");
+			//			    var st2=paper.set();
+			// <use x="314.705699" y="362.140535" width="22.019125" height="22.019125" transform="rotate(90.000000,325.426949,368.015535)" xlink:href="#DC:2020302"/>
+			//st.push(x1,x2,x3).transform("t314.705699,362.140535r90,10.72125,5.875s1.25,1.25,0,0");
+			/*<symbol id="TR:2050102" desc="箱式公用变" viewBox="0.000000 0.000000 17.230900 17.230900">
+				<circle cx="8.922935" cy="8.431200" r="6.830665" stroke="#ff0000" stroke-width="1" fill="none"/>
+				<path d="M 0.369070 0.000000 L 17.230930 0.000000 17.230930 16.738670 0.369070 16.738670Z" style="fill:none;stroke:#ff0000;stroke-width:1"/>
+				<path stroke="#ff0000" stroke-width="1" d="M 8.738670 2.215470 L 8.738670 14.646400"/>
+				<path stroke="#ff0000" stroke-width="1" d="M 4.553600 3.938670 L 4.553600 12.554130"/>
+				<path stroke="#ff0000" stroke-width="1" d="M 12.307730 3.569600 L 12.307730 13.046400"/>
+				</symbol>*/
+			//<use x="672.906667" y="747.023158" width="21.538625" height="21.538625" transform="rotate(90.000000,672.906667,757.177158)" xlink:href="#TR:2050102"/>
+			var y1 = paper.circle(8.922935, 8.431200, 6.830665).attr({
+				fill: "none",
+				stroke: "#ff0000",
+				"stroke-width": 1
+			});
+			var y2 = paper.path("M 0.369070 0.000000 L 17.230930 0.000000 17.230930 16.738670 0.369070 16.738670Z").attr({
+				fill: "none",
+				stroke: "#ff0000",
+				"stroke-width": 1
+			});
+			var y3 = paper.path("M 8.738670 2.215470 L 8.738670 14.646400").attr({
+				stroke: "#ff0000",
+				"stroke-width": 1
+			});
+			var y4 = paper.path("M 4.553600 3.938670 L 4.553600 12.554130").attr({
+				stroke: "#ff0000",
+				"stroke-width": 1
+			});
+			var y5 = paper.path("M 12.307730 3.569600 L 12.307730 13.046400").attr({
+				stroke: "#ff0000",
+				"stroke-width": 1
+			});
+			var st1 = paper.set();
+			st1.push(y1, y2, y3, y4, y5).transform("t672.906667,747.023158r90,0,10.154s1.25,1.25,0,0");
+
+
+
+			/**addWinWheelListener(winWheel);
+                scale={vari:.02,zoom:1,w:_pgsz[2],h:_pgsz[3],x:0,y:0};//_pgsz[2],_pgsz[3];容器宽高
+                */
+		}
+
+		/**
+		 *鼠标滚轮缩放
+		 *
+
+		function winWheel(e) {
+			var cw = _pgsz[2],
+				ch = _pgsz[3]; //容器宽高
+			var w = scale.w,
+				h = scale.h,
+				x = scale.x,
+				y = scale.y;
+			var vari = scale.vari - 0;
+			e = e || window.event;
+			var cx = e.clientX;
+			var cy = e.clientY;
+			var dtl;
+			if(e.wheelDelta) {
+				dtl = e.wheelDelta;
+			} else if(e.detail) {
+				dtl = e.detail;
+			}
+			var px, py, nx, ny;
+			var posv = 1 / scale.zoom;
+			px = cx * posv; //原鼠标位置
+			py = cy * posv;
+			if(dtl < 0) {
+				if(scale.zoom < 0.1) return;
+				scale.zoom -= vari;
+			} else {
+				if(scale.zoom > 4.9) return;
+				scale.zoom += vari;
+			}
+			posv = 1 / scale.zoom;
+			w = cw * posv;
+			h = ch * posv;
+			nx = cx * posv; //新鼠标位置
+			ny = cy * posv;
+			var dx = px - nx; //偏移量
+			var dy = py - ny;
+			x += dx;
+			y += dy;
+			scale.w = w;
+			scale.h = h;
+			scale.x = x;
+			scale.y = y;
+			paper.setViewBox(scale.x, scale.y, scale.w, scale.h, false);
+		}
+
+		function addWinWheelListener(sfun) {
+			if(document.addEventListener) {
+				document.addEventListener('DOMMouseScroll', sfun, false);
+			} //W3C
+			window.onmousewheel = document.onmousewheel = sfun; //IE/Opera/Chrome/Safari
+		}
+
+		function GetPageSize() {
+			var a, b;
+			if(window.innerHeight && window.scrollMaxY) {
+				a = document.body.scrollWidth;
+				b = window.innerHeight + window.scrollMaxY;
+			} else if(document.body.scrollHeight > document.body.offsetHeight) {
+				a = document.body.scrollWidth;
+				b = document.body.scrollHeight;
+			} else {
+				a = document.body.offsetWidth;
+				b = document.body.offsetHeight;
+			}
+			var c, d;
+			if(self.innerHeight) {
+				c = self.innerWidth;
+				d = self.innerHeight;
+			} else if(document.documentElement && document.documentElement.clientHeight) {
+				c = document.documentElement.clientWidth;
+				d = document.documentElement.clientHeight;
+			} else if(document.body) {
+				c = document.body.clientWidth;
+				d = document.body.clientHeight;
+			}
+			var e, f, g;
+			if(b < d) {
+				e = d;
+			} else {
+				e = b;
+			}
+			if(a < c) {
+				f = c;
+			} else {
+				f = a;
+			}
+			g = new Array(parseInt(f), parseInt(e), parseInt(c), parseInt(d));
+			return g;
+		}*/
+	</script>
+</body>
+
+</html>
