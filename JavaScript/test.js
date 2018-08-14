@@ -1,2 +1,4 @@
-a = String(1)
-console.log(typeof a);
+a = "mo,moo,ss";
+b = []
+b = a.split(',');
+console.log(b);

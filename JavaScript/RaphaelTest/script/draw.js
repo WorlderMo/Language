@@ -1,3 +1,10 @@
+/*
+ * @Author: mohailang (1198534595@qq.com)
+ * @Date: 2018-08-13 22:07:51
+ * @Last Modified by:   mohailang
+ * @Last Modified time: 2018-08-13 22:07:51
+ */
+
 var paper = new Raphael(0, 0, 944, 847); // 可以通过<g>元素的第二个元素来确定其参数，使其更通用
 
 function draw() {
@@ -66,7 +73,7 @@ function draw() {
                             'stroke-width': sub_strokeWidth,
                             'stroke': sub_stroke,
                             'fill': sub_text_fill
-                        })
+                        });
                     }
 
                     // 如果是<path>
@@ -77,13 +84,13 @@ function draw() {
                         }
                         if ($subChildAttr('style')) {
                             var sub_style = $subChildAttr('style');
-                            var sub_attrs=sub_style.split(";");
-                            var sub_keyValue=[];
-                            var sub_styleDict={};
-                            for (var sub_attr in sub_attrs){
-                                sub_keyValue=sub_attrs[sub_attr].split(":");
-                                sub_styleDict[sub_keyValue[0]]=sub_keyValue[1];
-                                sub_keyValue=[];
+                            var sub_attrs = sub_style.split(";");
+                            var sub_keyValue = [];
+                            var sub_styleDict = {};
+                            for (var sub_attr in sub_attrs) {
+                                sub_keyValue = sub_attrs[sub_attr].split(":");
+                                sub_styleDict[sub_keyValue[0]] = sub_keyValue[1];
+                                sub_keyValue = [];
                             }
                         }
 
@@ -114,8 +121,8 @@ function draw() {
                             // 'transform': sub_transform
                         });
                         sub_path.transform(sub_transform);
-                        for (var i in sub_styleDict){
-                            sub_path.attr(String(i),sub_styleDict[i]);
+                        for (var i in sub_styleDict) {
+                            sub_path.attr(String(i), sub_styleDict[i]);
                         }
                     }
 
@@ -159,13 +166,13 @@ function draw() {
                 }
                 if ($childAttr('style')) {
                     var path_style = $childAttr('style');
-                    var path_attrs=path_style.split(";");
-                    var path_keyValue=[];
-                    var path_styleDict={};
-                    for (var path_attr in path_attrs){
-                        path_keyValue=path_attrs[path_attr].split(":");
-                        path_styleDict[path_keyValue[0]]=path_keyValue[1];
-                        path_keyValue=[];
+                    var path_attrs = path_style.split(";");
+                    var path_keyValue = [];
+                    var path_styleDict = {};
+                    for (var path_attr in path_attrs) {
+                        path_keyValue = path_attrs[path_attr].split(":");
+                        path_styleDict[path_keyValue[0]] = path_keyValue[1];
+                        path_keyValue = [];
                     }
                 }
                 if ($childAttr('stroke')) {
@@ -178,8 +185,8 @@ function draw() {
                     // 'style': path_style,
                     'stroke': path_stroke
                 });
-                for (var j in path_styleDict){
-                    path.attr(String(j),path_styleDict[j]);
+                for (var j in path_styleDict) {
+                    path.attr(String(j), path_styleDict[j]);
                 }
             }
 
@@ -204,13 +211,13 @@ function draw() {
                 }
                 if ($childAttr('style')) {
                     var text_style = $childAttr('style');
-                    var text_attrs=text_style.split(";");
-                    var text_keyValue=[];
-                    var text_styleDict={};
-                    for (var text_attr in text_attrs){
-                        text_keyValue=text_attrs[text_attr].split(":");
-                        text_styleDict[text_keyValue[0]]=text_keyValue[1];
-                        text_keyValue=[];
+                    var text_attrs = text_style.split(";");
+                    var text_keyValue = [];
+                    var text_styleDict = {};
+                    for (var text_attr in text_attrs) {
+                        text_keyValue = text_attrs[text_attr].split(":");
+                        text_styleDict[text_keyValue[0]] = text_keyValue[1];
+                        text_keyValue = [];
                     }
                 }
                 var text_value = child.firstChild.nodeValue;
@@ -223,8 +230,8 @@ function draw() {
                     'fill': text_fill,
                     // 'style': style
                 });
-                for (var k in text_styleDict){
-                    text.attr(String(k),text_styleDict[k]);
+                for (var k in text_styleDict) {
+                    text.attr(String(k), text_styleDict[k]);
                 }
             }
             // todo:transform、图形

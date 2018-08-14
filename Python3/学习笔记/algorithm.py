@@ -101,6 +101,18 @@ def move(n, from, buffer, to):
         move(1, from, buffer, to)
         move(n-1, buffer, from, to)
 
+
+# 递归解决硬币找零问题
+def solveCoins(coinValueList, change):
+    minCoins = change
+    if change in coinValueList:
+        return 1
+    for i in [c for c in coinValueList if c < change]:
+        numCoins = 1+solveCoins(coinValueList, change-i)
+        if minCoins > numCoins:
+            minCoins = numCoins
+    return numCoins
+
 # -*- 递归 end-*-
 
 
@@ -365,7 +377,7 @@ class Graph(object):
                 self.dfs(neighbor.getID())
         return self.dfsVisited
 
-    bfsVisited = []  # 记录被访问过的顶点,也就是深度优先搜索的路径
+    bfsVisited = []  # 记录被访问过的顶点,也就是广度优先搜索的路径
 
     def bfs(self, root):
         """ 广度优先搜索"""
@@ -549,22 +561,142 @@ if __name__ == '__main__':
     print()
 
 
-# 冒泡排序
+# 二分查找(分治法)  时间复杂度为 O(logn)
+def binarySearch(nums, item):
+    first = 0
+    last = len(nums)-1
+    found = False
+    while first <= last and not found:
+        midPoint = (first+last)//2
+        if nums[midPoint] == item:
+            found = True
+        else:
+            if item < nums[midPoint]:
+                last = midPoint-1
+            else:
+                first = midPoint+1
+    return found
+
+# 二分查找递归版本
+
+
+def rec_binarySearch(nums, item):
+    if len(nums) == 0:
+        return False
+    midPoint = len(nums)//2
+    if nums[midPoint] == item:
+        return True
+    else:
+        if item < nums[midPoint]:
+            return rec_binarySearch(nums[:midPoint], item)
+        else:
+            return rec_binarySearch(nums[midPoint+1:], item)
+
+
+# hash查找
+# 构造哈希函数：分组求和法、平方取中法
+# 解决哈希冲突：开放寻址、再哈希法、链地址法
+class HashTable(object):
+    """定义哈希表"""
+
+    def __init__(self, size):
+        """初始化大小、键值对"""
+        # size 最好为素数
+        self.size = size
+        self.keys = [None]*self.size
+        self.values = [None]*self.size
+
+    def hashFunction(self, key):
+        """哈希函数"""
+        return key % self.size
+
+    def reHash(self, oldHash):
+        return (oldHash+1) % self.size
+
+    def add(self, key, value):
+        """添加数据"""
+        hashValue = self.hashFunction(key)
+        # 如果为空，那就直接把键值对加进去
+        if self.keys[hashValue] == None:
+            self.keys[hashValue] = key
+            self.values[hashValue] = value
+        # 如果不为，又分为两种情况
+        else:
+            # 如果key 已存在，那就替换掉
+            if self.keys[hashValue] == key:
+                self.values[hashValue] = value
+            # 说明位置已被占用，继续哈希寻找空的位置
+            else:
+                rehashValue = self.reHash(hashValue)
+                # 要么找到空的位置，要么找到存在的 key替换掉
+                while self.keys[rehashValue] != None and self.values[rehashValue] != key:
+                    rehashValue = self.reHash(rehashValue)
+                if self.keys[rehashValue] == None:
+                    self.keys[rehashValue] = key
+                    self.values[rehashValue] = value
+                else:
+                    self.keys[rehashValue] = value
+
+    def get(self, key):
+        """获取元素"""
+        startIndex = self.hashFunction(key)
+
+        data = None   # 想寻找的值可能不存在
+        found = False
+        stop = False
+        position = startIndex
+        # 如果位置为空，说明还没存过数据进来，就不需要继续寻找
+        while self.keys[position] != None and not found and not stop:
+            if self.keys[position] == key:
+                found = True
+                data = self.values[position]
+            else:
+                position = self.reHash(position)
+                if position == startIndex:
+                    stop = True
+        return data
+
+    def __getitem__(self, key):
+        return self.get(key)
+
+    def __setitem__(self, key, value):
+        self.add(key, value)
+
+
+# 冒泡排序  时间复杂度O(n^2)
 # 1.比较相邻的元素。如果第一个比第二个大，就交换他们两个。
 # 2.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
 # 3.针对所有的元素重复以上的步骤，除了最后一个。
 # 4.持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
-L = [3, 5, 6, 7, 8, 1, 2]
-for i in range(len(L) - 1):
-    for j in range(len(L) - 1 - i):
-        if L[j] > L[j + 1]:
-            L[j], L[j + 1] = L[j + 1], L[j]
-print(L)
+def bubbleSort(nums):
+    """冒泡排序"""
+    # 每次比较之后剩下的比较数都会减一，因为每次比较都会有一个数已经冒泡到了该在的位置
+    for passNum in range(len(nums)-1, 0, -1):
+        # 每次第一个数都需要和其他没冒泡过的数相比较
+        for i in range(passNum):
+            if nums[i] > nums[i+1]:
+                nums[i], nums[i+1] = nums[i+1], nums[i]
+
+
+def shortBubbleShort(nums):
+    """短冒泡排序"""
+    exchange = True
+    passNum = len(nums)-1
+    while passNum > 0 and exchange:
+        # 如果遍历期间不再交换位置，说明整个列表已经有序了，可以停止冒泡排序了
+        exchange = False
+        for i in range(passNum):
+            if nums[i] > nums[i+1]:
+                exchange = True
+                nums[i], nums[i+1] = nums[i+1], nums[i]
+        passNum = passNum-1
 
 
 # 快速排序
 # 通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后
 # 再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
+
+
 def quickSort(L, low, high):
     i = low
     j = high
