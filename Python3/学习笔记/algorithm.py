@@ -629,7 +629,7 @@ class HashTable(object):
             else:
                 rehashValue = self.reHash(hashValue)
                 # 要么找到空的位置，要么找到存在的 key替换掉
-                while self.keys[rehashValue] != None and self.values[rehashValue] != key:
+                while self.keys[rehashValue] != None and self.keys[rehashValue] != key:
                     rehashValue = self.reHash(rehashValue)
                 if self.keys[rehashValue] == None:
                     self.keys[rehashValue] = key
@@ -663,7 +663,7 @@ class HashTable(object):
         self.add(key, value)
 
 
-# 冒泡排序  时间复杂度O(n^2)
+# 冒泡排序  每次比较都有可能交换数据  时间复杂度O(n^2)
 # 1.比较相邻的元素。如果第一个比第二个大，就交换他们两个。
 # 2.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
 # 3.针对所有的元素重复以上的步骤，除了最后一个。
@@ -690,6 +690,19 @@ def shortBubbleShort(nums):
                 exchange = True
                 nums[i], nums[i+1] = nums[i+1], nums[i]
         passNum = passNum-1
+
+
+# 选择排序 每次遍历只做一次交换  时间复杂度O(n^2)
+# 每次遍历找到为排序序列中最大的，然后把它放在正确的位置
+def seclectionSort(nums):
+    """选择排序,改进了冒泡排序"""
+    for fillSlot in range(len(nums)-1, 0, -1):
+        positionOfMax = 0  # 每次都从第一次位置开始比较
+        for location in range(1, fillSlot+1):
+            if nums[location] > nums[positionOfMax]:  # 找出目前最大的那个数
+                positionOfMax = location  # 然后把它的位置记录下来，用以和其他数比较
+        # 每次遍历后，positionOfMax所在的数肯定是未排序中最大的
+        nums[positionOfMax], nums[fillSlot] = nums[fillSlot], nums[positionOfMax]
 
 
 # 快速排序

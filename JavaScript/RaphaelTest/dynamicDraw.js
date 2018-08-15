@@ -1,3 +1,9 @@
+/*
+ * @Author: mohailang (1198534595@qq.com)
+ * @Date: 2018-08-12 22:07:51
+ * @Last Modified by: mohailang
+ * @Last Modified time: 2018-08-14 14:20:00
+ */
 var windowWidth = Math.max(
     document.documentElement.clientWidth,
     window.innerWidth
@@ -8,120 +14,7 @@ var windowHeight = Math.max(
     window.innerHeight
 );
 
-var paper = Raphael(0, 0, 9666, 9666); // 可以通过<g>元素的第二个元素来确定其参数，使其更通用
-
-window.onload = function () {
-
-    //禁止页面滚动
-    //document.documentElement.style.overflow='hidden';
-
-    var oImg = document.getElementById("my-canvas");
-    var width = paper.width;
-    var height = paper.height;
-    var x = oImg.offsetLeft;
-    var y = oImg.offsetTop;
-
-    function fnWheel(obj, fncc) {
-        obj.onmousewheel = fn;
-        if (obj.addEventListener) {
-            obj.addEventListener('DOMMouseScroll', fn, false);
-        }
-
-        function fn(ev) {
-            var oEvent = ev || window.event;
-            //down确定放大还是缩小
-            var down = true;
-
-            if (oEvent.detail) {
-                down = oEvent.detail > 0
-            } else {
-                down = oEvent.wheelDelta < 0
-            }
-
-            if (fncc) {
-                fncc.call(this, down, oEvent);
-            }
-
-            if (oEvent.preventDefault) {
-                oEvent.preventDefault();
-            }
-
-            return false;
-        }
-    }
-    fnWheel(oImg, function (down, oEvent) {
-        //offsetWidth=width+2*boder
-        var oldWidth = this.offsetWidth;
-        var oldHeight = this.offsetHeight;
-        var oldLeft = this.offsetLeft;
-        var oldTop = this.offsetTop;
-        //比例
-        //clientX,clientY鼠标坐标
-        var scaleX = (oEvent.clientX - oldLeft) / oldWidth;
-        var scaleY = (oEvent.clientY - oldTop) / oldHeight;
-        //scaleX,scaleY为鼠标与div左上角位置差与div长宽的比值
-        var ncx = (oEvent.clientY - x) / width;
-        var ncy = (oEvent.clientY - y) / height;
-        var oldW = width;
-        var oldH = height;
-
-        if (down) {
-            this.style.width = this.offsetWidth * 0.9 + "px";
-            this.style.height = this.offsetHeight * 0.9 + "px";
-            width = width / 0.9;
-            height = height / 0.9;
-        } else {
-            this.style.width = this.offsetWidth * 1.1 + "px";
-            this.style.height = this.offsetHeight * 1.1 + "px";
-
-            width = width / 1.1;
-            height = height / 1.1;
-        }
-
-
-        var newWidth = this.offsetWidth;
-        var newHeight = this.offsetHeight;
-        this.style.left = oldLeft - scaleX * (newWidth - oldWidth) + "px";
-        this.style.top = oldTop - scaleY * (newHeight - oldHeight) + "px";
-        paper.setViewBox(0, 0, width, height, false);
-
-
-    });
-}
-//拖拽
-var ie = document.all;
-var nn6 = document.getElementById && !document.all;
-var isdrag = false;
-var y, x;
-var oDragObj;
-
-function moveMouse(e) {
-    if (isdrag) {
-        oDragObj.style.top = (nn6 ? nTY + e.clientY - y : nTY + event.clientY - y) + "px";
-        oDragObj.style.left = (nn6 ? nTX + e.clientX - x : nTX + event.clientX - x) + "px";
-        return false;
-    }
-}
-
-function initDrag(e) {
-    var oDragHandle = nn6 ? e.target : event.srcElement;
-    var topElement = "HTML";
-    while (oDragHandle.tagName != topElement && oDragHandle.className != "dragAble") {
-        oDragHandle = nn6 ? oDragHandle.parentNode : oDragHandle.parentElement;
-    }
-    if (oDragHandle.className == "dragAble") {
-        isdrag = true;
-        oDragObj = oDragHandle;
-        nTY = parseInt(oDragObj.style.top + 0);
-        y = nn6 ? e.clientY : event.clientY;
-        nTX = parseInt(oDragObj.style.left + 0);
-        x = nn6 ? e.clientX : event.clientX;
-        document.onmousemove = moveMouse;
-        return false;
-    }
-}
-document.onmousedown = initDrag;
-document.onmouseup = new Function("isdrag=false");
+var paper = new Raphael(0, 0, 944, 847);
 
 function dynamicDraw() {
     xmlDoc = loadXMLDoc("test-svg.svg");
@@ -150,15 +43,13 @@ function dynamicDraw() {
                 var rectangle = paper.rect(rx, ry, width, height);
                 rectangle.attr({
                     'fill': rect_fill
-                });
+                })
             }
 
             // 如果是<use>节点，里面引用了<symbol>，含有多个元素
             if (gKid.nodeName === 'use') {
                 var id = getAttr('xlink:href');
                 id = id.substring(1);
-
-                //获取use标签坐标长宽
                 var use_x = Number(getAttr('x'));
                 var use_y = Number(getAttr('y'));
                 var use_width = Number(getAttr('width'));
@@ -183,8 +74,6 @@ function dynamicDraw() {
                     // 求得相对偏移量
                     var offset_x = (transform_x - use_x).toFixed(6);
                     var offset_y = (transform_y - use_y).toFixed(6);
-                    // transform
-                    var transforms = 't' + use_x + ',' + use_y + 'r' + transform_r + ',' + offset_x + ',' + offset_y + 's' + scale + ',' + scale + ',0,0';
                 }
                 for (var subKey in symbolChildren) {
                     var symbolKid = symbolChildren[subKey];
@@ -230,28 +119,30 @@ function dynamicDraw() {
                         if (getSubAttr('stroke')) {
                             var symbol_path_stroke = getSubAttr('stroke');
                         }
-                        if (getSubAttr('style')) {
-                            var symbol_path_style = getSubAttr('style');
-                            var json = getJson(symbol_path_style);
-                        }
 
                         var symbol_path = paper.path(symbol_path_d);
+                        if (getSubAttr('style')) {
+                            var symbol_path_style = getSubAttr('style');
+                            var symbol_path_style_split = splitStyle(symbol_path_style);
+                            for (var i in symbol_path_style_split) {
+                                symbol_path.attr(String(i), symbol_path_style[i]);
+                            }
+                        }
                         symbol_path.attr({
                             'stroke-width': symbol_path_strokeWidth,
                             'class': symbol_path_class,
                             'stroke': symbol_path_stroke
-                            // fill:"#ff0000",stroke:"#ff0000","stroke-width":1
                         });
-
-                        symbol_path.attr(json);
+                        // transform
+                        var path_transform = 't' + use_x + ',' + use_y + 'r' + transform_r + ',' + offset_x + ',' + offset_y + 's' + scale + ',' + scale + ',0,0';
                         symbol_path.attr({
-                            transform: transforms
+                            transform: path_transform
                         });
                     }
 
                     if (symbolKid.nodeName === 'circle') {
-                        var symbol_circle_x = Number(getSubAttr('cx'));
-                        var symbol_circle_y = Number(getSubAttr('cy'));
+                        var symbol_circle_x = Number(getSubAttr('x'));
+                        var symbol_circle_y = Number(getSubAttr('y'));
                         var symbol_circle_r = Number(getSubAttr('r'));
 
                         if (getSubAttr('stroke')) {
@@ -274,9 +165,9 @@ function dynamicDraw() {
                             'fill': symbol_circle_fill,
                             'class': symbol_circle_class
                         });
-
+                        var circle_transform = 't' + use_x + ',' + use_y + 'r' + transform_r + ',' + offset_x + ',' + offset_y + 's' + scale + ',' + scale + ',0,0';
                         symbol_circle.attr({
-                            transform: transforms
+                            transform: circle_transform
                         });
                     }
                 }
@@ -291,7 +182,8 @@ function dynamicDraw() {
                     var path_class = getAttr('class');
                 }
                 if (getAttr('style')) {
-                    var path_style = getJson(getAttr('style'));
+                    var path_style = getAttr('style');
+                    var path_style_split = splitStyle(path_style);
                 }
                 if (getAttr('stroke')) {
                     var path_stroke = getAttr('stroke');
@@ -303,7 +195,9 @@ function dynamicDraw() {
                     'class': path_class,
                     'stroke': path_stroke
                 });
-                path.attr(path_style);
+                for (var j in path_style_split) {
+                    path.attr(String(j), path_style[j]);
+                }
             }
 
             if (gKid.nodeName === 'text') {
@@ -335,9 +229,12 @@ function dynamicDraw() {
                     'fill': text_fill
                 });
                 if (getAttr('style')) {
-                    var text_style = getJson(getAttr('style'));
+                    var text_style = getAttr('style');
+                    var text_style_split = splitStyle(text_style);
+                    for (var k in text_style_split) {
+                        text.attr(String(k), text_style_split[k]);
+                    }
                 }
-                text.attr(text_style);
 
             }
         }
