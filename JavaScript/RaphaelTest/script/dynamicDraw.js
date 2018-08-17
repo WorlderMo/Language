@@ -1,3 +1,9 @@
+/*
+ * @Author: mohailang (1198534595@qq.com)
+ * @Date: 2018-08-12 22:07:51
+ * @Last Modified by: mohailang
+ * @Last Modified time: 2018-08-16 08:57:32
+ */
 var windowWidth = Math.max(
     document.documentElement.clientWidth,
     window.innerWidth
@@ -8,125 +14,13 @@ var windowHeight = Math.max(
     window.innerHeight
 );
 
-var paper = Raphael(0, 0, 9666, 9666); // 可以通过<g>元素的第二个元素来确定其参数，使其更通用
-
-window.onload = function () {
-
-    //禁止页面滚动
-    //document.documentElement.style.overflow='hidden';
-
-    var oImg = document.getElementById("my-canvas");
-    var width = paper.width;
-    var height = paper.height;
-    var x = oImg.offsetLeft;
-    var y = oImg.offsetTop;
-
-    function fnWheel(obj, fncc) {
-        obj.onmousewheel = fn;
-        if (obj.addEventListener) {
-            obj.addEventListener('DOMMouseScroll', fn, false);
-        }
-
-        function fn(ev) {
-            var oEvent = ev || window.event;
-            //down确定放大还是缩小
-            var down = true;
-
-            if (oEvent.detail) {
-                down = oEvent.detail > 0
-            } else {
-                down = oEvent.wheelDelta < 0
-            }
-
-            if (fncc) {
-                fncc.call(this, down, oEvent);
-            }
-
-            if (oEvent.preventDefault) {
-                oEvent.preventDefault();
-            }
-
-            return false;
-        }
-    }
-    fnWheel(oImg, function (down, oEvent) {
-        //offsetWidth=width+2*boder
-        var oldWidth = this.offsetWidth;
-        var oldHeight = this.offsetHeight;
-        var oldLeft = this.offsetLeft;
-        var oldTop = this.offsetTop;
-        //比例
-        //clientX,clientY鼠标坐标
-        var scaleX = (oEvent.clientX - oldLeft) / oldWidth;
-        var scaleY = (oEvent.clientY - oldTop) / oldHeight;
-        //scaleX,scaleY为鼠标与div左上角位置差与div长宽的比值
-        var ncx = (oEvent.clientY - x) / width;
-        var ncy = (oEvent.clientY - y) / height;
-        var oldW = width;
-        var oldH = height;
-
-        if (down) {
-            this.style.width = this.offsetWidth * 0.9 + "px";
-            this.style.height = this.offsetHeight * 0.9 + "px";
-            width = width / 0.9;
-            height = height / 0.9;
-        } else {
-            this.style.width = this.offsetWidth * 1.1 + "px";
-            this.style.height = this.offsetHeight * 1.1 + "px";
-
-            width = width / 1.1;
-            height = height / 1.1;
-        }
-
-
-        var newWidth = this.offsetWidth;
-        var newHeight = this.offsetHeight;
-        this.style.left = oldLeft - scaleX * (newWidth - oldWidth) + "px";
-        this.style.top = oldTop - scaleY * (newHeight - oldHeight) + "px";
-        paper.setViewBox(0, 0, width, height, false);
-
-
-    });
-}
-//拖拽
-var ie = document.all;
-var nn6 = document.getElementById && !document.all;
-var isdrag = false;
-var y, x;
-var oDragObj;
-
-function moveMouse(e) {
-    if (isdrag) {
-        oDragObj.style.top = (nn6 ? nTY + e.clientY - y : nTY + event.clientY - y) + "px";
-        oDragObj.style.left = (nn6 ? nTX + e.clientX - x : nTX + event.clientX - x) + "px";
-        return false;
-    }
-}
-
-function initDrag(e) {
-    var oDragHandle = nn6 ? e.target : event.srcElement;
-    var topElement = "HTML";
-    while (oDragHandle.tagName != topElement && oDragHandle.className != "dragAble") {
-        oDragHandle = nn6 ? oDragHandle.parentNode : oDragHandle.parentElement;
-    }
-    if (oDragHandle.className == "dragAble") {
-        isdrag = true;
-        oDragObj = oDragHandle;
-        nTY = parseInt(oDragObj.style.top + 0);
-        y = nn6 ? e.clientY : event.clientY;
-        nTX = parseInt(oDragObj.style.left + 0);
-        x = nn6 ? e.clientX : event.clientX;
-        document.onmousemove = moveMouse;
-        return false;
-    }
-}
-document.onmousedown = initDrag;
-document.onmouseup = new Function("isdrag=false");
+// var paper = new Raphael(0, 0, 944, 847);
 
 function dynamicDraw() {
     xmlDoc = loadXMLDoc("test-svg.svg");
+    var AllSymbolElements = xmlDoc.getElementsByTagName('symbol');
     var gLists = xmlDoc.getElementsByTagName('g');
-    for (var index in gLists) {
+    for (var index = 0; index < gLists.length; index++) {
         var childElements = gLists[index].childNodes;
         for (var key in childElements) {
             var gKid = childElements[key];
@@ -147,6 +41,7 @@ function dynamicDraw() {
                 var width = getAttr('width');
                 var height = getAttr('height');
                 var rect_fill = getAttr('fill');
+                var paper = new Raphael(rx, ry, width, height);
                 var rectangle = paper.rect(rx, ry, width, height);
                 rectangle.attr({
                     'fill': rect_fill
@@ -157,15 +52,20 @@ function dynamicDraw() {
             if (gKid.nodeName === 'use') {
                 var id = getAttr('xlink:href');
                 id = id.substring(1);
-
-                //获取use标签坐标长宽
                 var use_x = Number(getAttr('x'));
                 var use_y = Number(getAttr('y'));
                 var use_width = Number(getAttr('width'));
                 var use_height = Number(getAttr('height'));
 
                 // 获取 symbol元素
-                var symbol = xmlDoc.getElementById(id);
+                // var symbol = xmlDoc.getElementById(id);
+
+                for (var j = 0; j < AllSymbolElements.length; j++) {
+                    if (AllSymbolElements[j].getAttribute('id') === id) {
+                        symbol=AllSymbolElements[j];
+                        break;
+                    }
+                }
 
                 // 获取 viewBox属性
                 var symbol_viewBox = symbol.getAttribute('viewBox').split(' ');
@@ -183,8 +83,9 @@ function dynamicDraw() {
                     // 求得相对偏移量
                     var offset_x = (transform_x - use_x).toFixed(6);
                     var offset_y = (transform_y - use_y).toFixed(6);
-                    // transform
-                    var transforms = 't' + use_x + ',' + use_y + 'r' + transform_r + ',' + offset_x + ',' + offset_y + 's' + scale + ',' + scale + ',0,0';
+
+                    var use_transform_parsed = 't' + use_x + ',' + use_y + 'r' + transform_r + ',' + offset_x + ',' + offset_y + 's' + scale + ',' + scale + ',0,0';
+
                 }
                 for (var subKey in symbolChildren) {
                     var symbolKid = symbolChildren[subKey];
@@ -230,22 +131,22 @@ function dynamicDraw() {
                         if (getSubAttr('stroke')) {
                             var symbol_path_stroke = getSubAttr('stroke');
                         }
-                        if (getSubAttr('style')) {
-                            var symbol_path_style = getSubAttr('style');
-                            var json = getJson(symbol_path_style);
-                        }
 
                         var symbol_path = paper.path(symbol_path_d);
+
                         symbol_path.attr({
                             'stroke-width': symbol_path_strokeWidth,
                             'class': symbol_path_class,
                             'stroke': symbol_path_stroke
-                            // fill:"#ff0000",stroke:"#ff0000","stroke-width":1
                         });
-
-                        symbol_path.attr(json);
+                        if (getSubAttr('style')) {
+                            var symbol_path_style = getSubAttr('style');
+                            var symbol_path_style_parsed = parsed_style(symbol_path_style);
+                            symbol_path.attr(symbol_path_style_parsed);
+                        }
+                        // transform
                         symbol_path.attr({
-                            transform: transforms
+                            transform: use_transform_parsed
                         });
                     }
 
@@ -274,9 +175,8 @@ function dynamicDraw() {
                             'fill': symbol_circle_fill,
                             'class': symbol_circle_class
                         });
-
                         symbol_circle.attr({
-                            transform: transforms
+                            transform: use_transform_parsed
                         });
                     }
                 }
@@ -290,20 +190,24 @@ function dynamicDraw() {
                 if (getAttr('class')) {
                     var path_class = getAttr('class');
                 }
-                if (getAttr('style')) {
-                    var path_style = getJson(getAttr('style'));
-                }
+
                 if (getAttr('stroke')) {
                     var path_stroke = getAttr('stroke');
                 }
 
                 var path = paper.path(path_d);
+
                 path.attr({
                     'stroke-width': path_strokeWidth,
                     'class': path_class,
                     'stroke': path_stroke
                 });
-                path.attr(path_style);
+                if (getAttr('style')) {
+                    var path_style = getAttr('style');
+                    var path_style_parsed = parsed_style(path_style);
+                    path.attr(path_style_parsed);
+                }
+
             }
 
             if (gKid.nodeName === 'text') {
@@ -327,6 +231,11 @@ function dynamicDraw() {
 
                 var text_value = gKid.firstChild.nodeValue;
                 var text = paper.text(text_x, text_y, text_value);
+                if (getAttr('style')) {
+                    var text_style = getAttr('style');
+                    var text_style_parsed = parsed_style(text_style);
+                    text.attr(text_style_parsed);
+                }
                 text.attr({
                     'font-family': text_fontFamily,
                     'font-size': text_fontSize,
@@ -334,10 +243,7 @@ function dynamicDraw() {
                     'stroke': text_stroke,
                     'fill': text_fill
                 });
-                if (getAttr('style')) {
-                    var text_style = getJson(getAttr('style'));
-                }
-                text.attr(text_style);
+
 
             }
         }

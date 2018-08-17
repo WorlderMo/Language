@@ -2,7 +2,7 @@
  * @Author: mohailang (1198534595@qq.com)
  * @Date: 2018-08-12 22:07:51
  * @Last Modified by: mohailang
- * @Last Modified time: 2018-08-14 14:20:00
+ * @Last Modified time: 2018-08-16 08:57:32
  */
 var windowWidth = Math.max(
     document.documentElement.clientWidth,
@@ -43,7 +43,7 @@ function dynamicDraw() {
                 var rectangle = paper.rect(rx, ry, width, height);
                 rectangle.attr({
                     'fill': rect_fill
-                })
+                });
             }
 
             // 如果是<use>节点，里面引用了<symbol>，含有多个元素

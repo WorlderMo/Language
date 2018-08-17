@@ -1,5 +1,4 @@
 {
-    "editor.fontFamily": "Source Code Pro",
     "python.pythonPath": "/usr/local/opt/python/bin/python3.7",
     "editor.minimap.maxColumn": 120,
     // 使用三指横扫在打开的文件之间导航

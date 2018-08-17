@@ -705,11 +705,22 @@ def seclectionSort(nums):
         nums[positionOfMax], nums[fillSlot] = nums[fillSlot], nums[positionOfMax]
 
 
+# 插入排序 时间复杂度O(n^2)
+# 和现有的有序序列比较，插入其中
+def insertSort(nums):
+    """插入排序"""
+    for index in range(1, len(nums)):
+        currentValue = nums[index]
+        position = index
+        while position >= 1 and nums[position-1] > currentValue:
+            nums[position] = nums[position-1]
+            position -= 1
+        nums[position] = currentValue
+
+
 # 快速排序
 # 通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后
 # 再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
-
-
 def quickSort(L, low, high):
     i = low
     j = high

@@ -35,19 +35,3 @@
 #         if j <= sumNum[k]:
 #             print(k+1)
 #             break
-def shortBubbleShort(nums):
-    """短冒泡排序"""
-    exchange = True
-    passNum = len(nums)-1
-    while passNum > 0 and exchange:
-        exchange = False
-        for i in range(passNum):
-            if nums[i] > nums[i+1]:
-                exchange = True
-                nums[i], nums[i+1] = nums[i+1], nums[i]
-        passNum = passNum-1
-
-
-a = [1, 21, 4, 7, 3, 2, 7, 89, 43]
-shortBubbleShort(a)
-print(a)

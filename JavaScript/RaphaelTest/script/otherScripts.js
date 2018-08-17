@@ -1,11 +1,12 @@
-function splitStyle(style) {
-    var attrs=style.split(';');
-    var keyValueList;
-    var styleDict={};
-    for (var i in attrs) {
-        keyValueList=attrs[i].split(':');
-        styleDict[keyValueList[0]]=keyValueList[1];
-        keyValueList=[];
+function parsed_style(style) {
+    var oldStyle = style;
+    var style_parse = '{';
+    var sub_style = oldStyle.split(';');
+    for (var i = 0; i < sub_style.length - 1; i++) {
+        var sub = sub_style[i].split(':');
+        style_parse = style_parse + '"' + sub[0] + '":' + '"' + sub[1] + '",'
     }
-    return styleDict;
+    sub = sub_style[sub_style.length - 1].split(':');
+    style_parse = style_parse + '"' + sub[0] + '":"' + sub[1] + '"}';
+    return JSON.parse(style_parse);
 }
