@@ -12,16 +12,20 @@ var windowWidth = Math.max(
 var windowHeight = Math.max(
     document.documentElement.clientHeight,
     window.innerHeight
-);
+)
+
 
 // var paper = new Raphael(0, 0, 944, 847);
 
 function dynamicDraw() {
-    xmlDoc = loadXMLDoc("test-svg.svg");
+    xmlDoc = loadXMLDoc("2.svg");
+    // 扫描 xmlDoc 中的 symbol 元素,为兼容 IE 作出的让步，在 IE8 中 xmlDOM没有 getElementById 方法
     var AllSymbolElements = xmlDoc.getElementsByTagName('symbol');
+    //扫描 xmlDoc 中的所有<g>元素
     var gLists = xmlDoc.getElementsByTagName('g');
     for (var index = 0; index < gLists.length; index++) {
         var childElements = gLists[index].childNodes;
+        // 扫描每个<g>中的所有子节点
         for (var key in childElements) {
             var gKid = childElements[key];
             // 如果不是元素节点，则跳过
@@ -243,8 +247,6 @@ function dynamicDraw() {
                     'stroke': text_stroke,
                     'fill': text_fill
                 });
-
-
             }
         }
     }

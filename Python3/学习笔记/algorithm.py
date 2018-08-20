@@ -718,6 +718,27 @@ def insertSort(nums):
         nums[position] = currentValue
 
 
+# 希尔排序 时间复杂度O(n^2)
+# 分解成多个较小的子列表来改进插入排序
+def gapInsertionSort(nums, start, gap):
+    for i in range(start+gap, len(nums), gap):
+        currentValue = nums[i]
+        position = i
+        while position >= gap and nums[position-gap] > currentValue:
+            nums[position] = nums[position-gap]
+            position -= gap
+        nums[position] = currentValue
+
+
+def shellSort(nums):
+    gap = len(nums)//2  # gap其实也就是分成的子列表的个数
+    while gap > 0:
+        # 对每个子列表都进行插入排序
+        for startPosition in range(gap):
+            gapInsertionSort(nums, startPosition, gap)
+        gap = gap//2
+
+
 # 快速排序
 # 通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后
 # 再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
