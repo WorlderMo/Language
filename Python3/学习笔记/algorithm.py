@@ -35,7 +35,7 @@ class Queue(object):
 
 # 栈
 class Stack (object):
-    """堆栈类: 后进先出"""
+    """栈类: 后进先出"""
 
     def __init__(self):
         self.items = []
@@ -49,7 +49,7 @@ class Stack (object):
         return self.items.pop()
 
     def size(self):
-        """堆栈大小"""
+        """栈大小"""
         return len(self.items)
 
     def top(self):
@@ -57,7 +57,7 @@ class Stack (object):
         return self.items[self.size()-1]
 
     def isEmpty(self):
-        """判断堆栈是否为空"""
+        """判断栈是否为空"""
         return self.size() == 0
 
 
@@ -668,6 +668,7 @@ class HashTable(object):
 # 2.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
 # 3.针对所有的元素重复以上的步骤，除了最后一个。
 # 4.持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
+# 稳定排序
 def bubbleSort(nums):
     """冒泡排序"""
     # 每次比较之后剩下的比较数都会减一，因为每次比较都会有一个数已经冒泡到了该在的位置
@@ -694,6 +695,7 @@ def shortBubbleShort(nums):
 
 # 选择排序 每次遍历只做一次交换  时间复杂度O(n^2)
 # 每次遍历找到为排序序列中最大的，然后把它放在正确的位置
+# 不稳定排序
 def seclectionSort(nums):
     """选择排序,改进了冒泡排序"""
     for fillSlot in range(len(nums)-1, 0, -1):
@@ -707,6 +709,7 @@ def seclectionSort(nums):
 
 # 插入排序 时间复杂度O(n^2)
 # 和现有的有序序列比较，插入其中
+# 稳定排序
 def insertSort(nums):
     """插入排序"""
     for index in range(1, len(nums)):
@@ -718,8 +721,9 @@ def insertSort(nums):
         nums[position] = currentValue
 
 
-# 希尔排序 时间复杂度O(n^2)
+# 希尔排序 时间复杂度在O(n)和O(n^2)之间
 # 分解成多个较小的子列表来改进插入排序
+# 不稳定排序
 def gapInsertionSort(nums, start, gap):
     for i in range(start+gap, len(nums), gap):
         currentValue = nums[i]
@@ -739,26 +743,92 @@ def shellSort(nums):
         gap = gap//2
 
 
-# 快速排序
-# 通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后
-# 再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
-def quickSort(L, low, high):
-    i = low
-    j = high
-    if i >= j:
-        return L
-    key = L[i]
-    while i < j:
-        while i < j and L[j] >= key:
-            j = j - 1
-        L[i] = L[j]
-        while i < j and L[i] <= key:
-            i = i + 1
-        L[j] = L[i]
-    L[i] = key
-    quickSort(L, low, i - 1)
-    quickSort(L, j + 1, high)
-    return L
+# 归并排序 时间复杂度 O(nlogn)
+# 分而治之，先递归拆分列表，然后把两个有序的子列表合并
+# 稳定排序
+def mergeSort(nums):
+    """递归拆分列表"""
+    if len(nums) <= 1:
+        return nums
+    mid = len(nums) // 2
+    left = mergeSort(nums[:mid])
+    right = mergeSort(nums[mid:])
+    return merge(left, right)
+
+
+def merge(left, right):
+    """合并排序"""
+    result = []  # 用以存储新的排好序的列表
+    i = 0  # left 的下标
+    j = 0  # right 的下标
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    # 比较到最后，两个列表中肯定是一个列表已取完元素，另一个列表只剩下一个元素
+    # 当切片索引超过列表长度时，切片为空列表
+    result += left[i:]
+    result += right[j:]
+    return result
+
+
+# 快速排序  最优时间复杂度 O(nlogn) 最坏时间复杂度O(n^2)
+# 先从待排序的数组中找一个基准值，然后把原来的数组分成两部分：小于基准值的左子数组和大于基准值的右子数组，
+# 然后对这个子数组再递归重复以上过程，直到最后的两个子数组的所有书都分别有序，
+# 最后返回“左子数组+基准值+右子数组”，即是最终排序好的数组。
+# 排序是不稳定的
+def quickSort(nums):
+    """快速排序，这个是占用了格外的存储空间来存储左右子数组"""
+    if len(nums)<=1:
+        return nums
+    left = []
+    right = []
+    base = nums.pop(0)  # 不可以用base = nums[0]，原因是这样做的话 base 值仍在nums数组中，base会不断在子数组中，陷入死循环，无法满足递归出口条件
+    # 对原数组进行划分
+    for num in nums:
+        if num < base:
+            left.append(num)
+        else:
+            right.append(num)
+    return quickSort(left) + [base] + quickSort(right)
+
+def quickSort(nums):
+    """快速排序，原地操作数组"""
+    quickSortHelper(nums, 0, len(nums) - 1)
+def quickSortHelper(nums, first, last):
+    if first<last:
+        splitPoint = partition(nums, first, last)
+        quickSortHelper(nums, first, splitPoint - 1)
+        quickSortHelper(nums, splitPoint + 1, last)
+def partition(nums,first,last):
+    """分区操作，把数组分成左边都比基准值小，右边都比基准值大"""
+    base = nums[first]
+    left = first + 1  # base 不要和自身比较
+    right = last
+
+    done = False
+    while not done:
+        while left <= right and nums[left] <= base:
+            # 在左边找到一个比基准值大的值
+            left += 1
+        while left <= right and nums[right] >= base:
+            # 在右边找到一个比基准值小的值
+            right += 1
+        if right<left:
+            done = True
+        else:
+            # 然后交换位置
+            nums[left], nums[right] = nums[right], nums[left]
+
+    # 当循环结束，此时应该把基准值放到拆分点，此时基准值左边的值都比右边的值要小了，分区完成
+    nums[right], base = base, nums[right]
+
+    return right    # 返回此次基准值的位置，作为下一次分区的分割点
+
+
 
 
 # 桶排序

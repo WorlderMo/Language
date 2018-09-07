@@ -1,11 +1,8 @@
-a = {
-    'b': 2,
-    'c': 3,
-}
+def main():
+    pass
 
 
-def run(a, c):
-    print(b, c)
-
-
-run(**a)
+if __name__ == '__main__':
+    nkt = list(map(int, input().split()))
+    nums = list(map(int, input().split()))
+    print(3)
