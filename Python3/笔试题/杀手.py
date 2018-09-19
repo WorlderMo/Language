@@ -15,7 +15,7 @@ def main():
                 nums.pop(i)
                 stop = False
         result += 1
-    print(result-1)
+    print(result - 1)
 
 
 if __name__ == '__main__':

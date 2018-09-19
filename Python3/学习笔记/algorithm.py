@@ -89,9 +89,7 @@ class deque(object):
 
 
 # -*- 递归 begin-*-
-
 # 用栈帧来实现递归，每次递归都会为函数的本地变量创建一个作用域
-
 # 汉诺塔
 def move(n, from, buffer, to):
     if n == 1:
@@ -117,8 +115,6 @@ def solveCoins(coinValueList, change):
 
 
 # -*- 链表 begin -*-
-
-
 # 定义链表节点类
 class Node(object):
     def __init__(self, data):

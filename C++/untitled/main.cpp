@@ -1,20 +1,13 @@
-#include <stdio.h>
+/**
+  *@Date    : 2018-07-15 19:37:41
+  *@Author  : mohailang (1198534595@qq.com)
+  **/
 #include <sys/types.h>
 #include <unistd.h>
-#include <sys/wait.h>
-
-int main()
+# define DOUBLE(x) x+x
+int main(int argc, char const *argv[])
 {
-    int i;
-    for (i = 0; i < 2; i++)
-    {
-        fork();
-        printf("g");
-    }
-
-    wait(NULL);
-    wait(NULL);
-    // printf("\n");
+    float i = 7*DOUBLE(2);
 
     return 0;
 }

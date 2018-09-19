@@ -4,18 +4,10 @@
   **/
 #include <sys/types.h>
 #include <unistd.h>
-
+# define DOUBLE(x) x+x
 int main(int argc, char const *argv[])
 {
-    int a = 3, b;
-    if (fork() == 0)
-    {
-        a++;
-        printf("a=%d\n", a);
-    }
-
-    a = a - 1;
-    printf("a=%d\n", a);
-
+    float i = 7*DOUBLE(2);
+    printf('%f',i);
     return 0;
 }
