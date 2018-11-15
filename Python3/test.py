@@ -1,17 +1,8 @@
-def transfer(string):
-    result = ''
-    tran = False
-    for i in range(len(string)):
-        if tran == True:
-            result += string[i].upper()
-            tran = False
-            continue
-        if string[i] == '_':
-            tran = True
-            continue
-        result += string[i]
-    return result
+a = 10
+b = 3
+c = 10
+b = c - 2
+a *= b
 
 
-if __name__ == '__main__':
-    print(transfer('this_is_a_test'))
+print(a, b, c)

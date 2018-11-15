@@ -2,12 +2,23 @@
   *@Date    : 2018-07-15 19:37:41
   *@Author  : mohailang (1198534595@qq.com)
   **/
-#include <sys/types.h>
-#include <unistd.h>
-# define DOUBLE(x) x+x
-int main(int argc, char const *argv[])
+#include <stdio.h>
+
+int main()
 {
-    float i = 7*DOUBLE(2);
-    printf('%f',i);
+    /* code */
+    /*
+    mmm
+    sss
+    sssss
+    */
+
+   //sssss
+   //aaaaa
+   //sss
+    int a = 10, b = 3, c = 10;
+    b = c - 2;
+    a *= b; //a = a*b
+    printf("a=%d b=%d c=%d", a, b, c);
     return 0;
 }

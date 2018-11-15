@@ -1,20 +1,10 @@
-#include <iostream>
 #include <stdio.h>
-using namespace std;
-class X
-{
-　　public:virtual void f(){ cout<<"aa\n";}
-};
-class Y:public X
-{
-public:void f(){ cout<<"bb\n";}
-};
 
-int main(void)
+int main(int argc, char const *argv[])
 {
-　　int a=1;
-    float b=2.0;
-    int c=a+b;
-    printf('%d',c);
+    /* code */
+    int a = 10, b = 3, c = 10;
+    b = c - 2;
+    a *= b;
     return 0;
 }

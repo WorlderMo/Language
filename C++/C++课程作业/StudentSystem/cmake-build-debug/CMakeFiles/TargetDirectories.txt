@@ -1,0 +1,3 @@
+/Users/worlder/Documents/Language/C++/C++课程作业/StudentSystem/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/worlder/Documents/Language/C++/C++课程作业/StudentSystem/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/worlder/Documents/Language/C++/C++课程作业/StudentSystem/cmake-build-debug/CMakeFiles/StudentSystem.dir

@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/worlder/Documents/Language/C++/C++课程作业/StudentSystem
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/worlder/Documents/Language/C++/C++课程作业/StudentSystem/cmake-build-debug
