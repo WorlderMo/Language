@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/worlder/Documents/Language/C++/C++课程作业/untitled/main.cpp
+algorithm
+-
+cstdlib
+-
+iostream
+-
+map
+-
+stdexcept
+-
+string
+-
+time.h
+-
+vector
+-
+split.h
+/Users/worlder/Documents/Language/C++/C++课程作业/untitled/split.h
+
+/Users/worlder/Documents/Language/C++/C++课程作业/untitled/split.h
+vector
+-
+string
+-
+

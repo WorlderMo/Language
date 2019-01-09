@@ -1,0 +1,9 @@
+PASS:
+aaa
+bbb
+ccc
+ggg
+FAIL:
+ddd
+eee
+fff

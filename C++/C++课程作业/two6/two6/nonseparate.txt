@@ -1,0 +1,7 @@
+aaa   P
+bbb   P
+ccc   P
+ddd   F
+eee   F
+fff   F
+ggg   P
