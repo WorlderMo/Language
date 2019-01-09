@@ -45,7 +45,7 @@ def write_excel(xlsContent):
     for i in range(0, xlsListLen):
         for j in range(0, xlsContentLen):
             worksheet.write(i, j, xlsContent[i][j])
-    workbook.save("留校汇总.xls")
+    workbook.save("留校汇总2019.xls")
 
 
 # 筛选，避免重复
@@ -60,7 +60,7 @@ def seclect(lists):
 if __name__ == '__main__':
     xlsList = []
     xlsContent = []
-    path = "/Users/worlder/Desktop/留宿申请"
+    path = "/Users/worlder/Desktop/留宿2019"
     search_excel(path)
     read_excel(xlsList)
     write_excel(seclect(xlsContent))

@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/opt/openssl/lib CMakeFiles/StudentSystem.dir/main.cpp.o CMakeFiles/StudentSystem.dir/Dorm_info.cpp.o CMakeFiles/StudentSystem.dir/search.cpp.o CMakeFiles/StudentSystem.dir/Student_info.cpp.o CMakeFiles/StudentSystem.dir/Student_new.cpp.o  -o StudentSystem 

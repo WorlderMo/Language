@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6A3A216521DB125E00B94F67 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3A216421DB125E00B94F67 /* main.cpp */; };
+		6A3A216E21DB14C600B94F67 /* Dorm_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3A216C21DB14C600B94F67 /* Dorm_info.cpp */; };
+		6A3A217321DB188700B94F67 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3A217121DB188700B94F67 /* search.cpp */; };
+		6A3A217621DB18D300B94F67 /* Student_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3A217421DB18D300B94F67 /* Student_info.cpp */; };
+		6A3A217921DB193E00B94F67 /* Student_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3A217721DB193E00B94F67 /* Student_new.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,20 @@
 /* Begin PBXFileReference section */
 		6A3A216121DB125E00B94F67 /* StudentSystem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StudentSystem; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3A216421DB125E00B94F67 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6A3A216C21DB14C600B94F67 /* Dorm_info.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dorm_info.cpp; sourceTree = "<group>"; };
+		6A3A216D21DB14C600B94F67 /* Dorm_info.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Dorm_info.hpp; sourceTree = "<group>"; };
+		6A3A216F21DB159C00B94F67 /* exprtk.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = exprtk.hpp; sourceTree = "<group>"; };
+		6A3A217021DB181600B94F67 /* GAME.SAV */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GAME.SAV; sourceTree = "<group>"; };
+		6A3A217121DB188700B94F67 /* search.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = search.cpp; sourceTree = "<group>"; };
+		6A3A217221DB188700B94F67 /* search.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = search.hpp; sourceTree = "<group>"; };
+		6A3A217421DB18D300B94F67 /* Student_info.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Student_info.cpp; sourceTree = "<group>"; };
+		6A3A217521DB18D300B94F67 /* Student_info.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Student_info.hpp; sourceTree = "<group>"; };
+		6A3A217721DB193E00B94F67 /* Student_new.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Student_new.cpp; sourceTree = "<group>"; };
+		6A3A217821DB193E00B94F67 /* Student_new.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Student_new.hpp; sourceTree = "<group>"; };
+		6A3A217A21DB1A2500B94F67 /* instructions.txt */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = text; path = instructions.txt; sourceTree = "<group>"; };
+		6A3A217B21DB1A2600B94F67 /* config.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.txt; sourceTree = "<group>"; };
+		6A3A217C21DB1A2700B94F67 /* dispatch.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dispatch.txt; sourceTree = "<group>"; };
+		6A3A217D21DB1D9100B94F67 /* out_config_new.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_config_new.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +75,21 @@
 		6A3A216321DB125E00B94F67 /* StudentSystem */ = {
 			isa = PBXGroup;
 			children = (
+				6A3A217D21DB1D9100B94F67 /* out_config_new.txt */,
+				6A3A217B21DB1A2600B94F67 /* config.txt */,
+				6A3A217C21DB1A2700B94F67 /* dispatch.txt */,
+				6A3A217A21DB1A2500B94F67 /* instructions.txt */,
+				6A3A217021DB181600B94F67 /* GAME.SAV */,
+				6A3A216F21DB159C00B94F67 /* exprtk.hpp */,
 				6A3A216421DB125E00B94F67 /* main.cpp */,
+				6A3A216C21DB14C600B94F67 /* Dorm_info.cpp */,
+				6A3A216D21DB14C600B94F67 /* Dorm_info.hpp */,
+				6A3A217121DB188700B94F67 /* search.cpp */,
+				6A3A217221DB188700B94F67 /* search.hpp */,
+				6A3A217421DB18D300B94F67 /* Student_info.cpp */,
+				6A3A217521DB18D300B94F67 /* Student_info.hpp */,
+				6A3A217721DB193E00B94F67 /* Student_new.cpp */,
+				6A3A217821DB193E00B94F67 /* Student_new.hpp */,
 			);
 			path = StudentSystem;
 			sourceTree = "<group>";
@@ -119,6 +151,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A3A216521DB125E00B94F67 /* main.cpp in Sources */,
+				6A3A217921DB193E00B94F67 /* Student_new.cpp in Sources */,
+				6A3A217321DB188700B94F67 /* search.cpp in Sources */,
+				6A3A216E21DB14C600B94F67 /* Dorm_info.cpp in Sources */,
+				6A3A217621DB18D300B94F67 /* Student_info.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
