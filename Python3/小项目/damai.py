@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# @Date    : 2018-01-10 22:34:45
+# @Author  : mohailang (1198534595@qq.com)
 """
 基于python和selenium实现的大麦网自动刷新抢票脚本
 用户要提前添加好个人信息和收货地址
@@ -16,7 +19,7 @@ import time
 # URL = "https://piao.damai.cn/145760.html?spm=a2o6e.search.0.0.2bd01e33B2XgOX"
 URL = "https://piao.damai.cn/140188.html?spm=a2o6e.search.0.0.532e4e9616s0oR"
 HOUR = 19
-MIN  = 58
+MIN = 58
 USERNAME = "13727042352"
 
 driver = webdriver.Chrome()
@@ -27,6 +30,7 @@ driver.get(URL)
 
 # test
 # driver.get("https://piao.damai.cn/141699.html?spm=a2o6e.search.0.0.10f94d15pF81cd")
+
 
 def choose(seletor):
     try:
@@ -39,6 +43,7 @@ def choose(seletor):
     except Exception:
         print("Not found!")
         return None
+
 
 def login():
     # 点击登录
@@ -59,6 +64,7 @@ def login():
     except Exception:
         print(password)
         print("Password Can't click")
+
 
 def buy():
     # 点击价格
@@ -101,8 +107,3 @@ if __name__ == '__main__':
     #         while 1:
     #             if MIN == time.localtime().tm_min:
     #                 print("开始抢票")
-
-
-
-
-        

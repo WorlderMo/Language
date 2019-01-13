@@ -1,14 +1,21 @@
-
-#include <iostream>
-#include <cstring>
-#include <cmath>
-
+#include<iostream>
 using namespace std;
-
-int main()
+class A{
+public:
+     virtual  void  display(){  cout<<"A"<<endl; }
+     };
+class B :  public A{
+public:
+            void  display(){ cout<<"B"<<endl; }
+     };
+void doDisplay(A *p)
 {
-    float a;
-    a = sqrt(6.25);
-    cout << a << endl;
-    return 0;
+    p->display();
+    delete p;
+}
+
+int main(int argc,char* argv[])
+{
+    doDisplay(new B());
+    return 0;
 }
