@@ -9,4 +9,5 @@
         "ss"
     ],
     "git.ignoreLimitWarning": true,
+    "python.linting.pylintEnabled": true,
 }
