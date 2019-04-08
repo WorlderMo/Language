@@ -10,23 +10,21 @@ from sqlalchemy import event, DDL
 db = SQLAlchemy()
 
 
-FINANCE_STAGE = ['未融资', '天使轮', 'A轮', 'B轮', 'C轮', 'D轮及以上', '上市公司', '不需要融资']
-FIELD = ['移动互联网', '电子商务', '金融', '企业服务', '教育', '文化娱乐', '游戏', 'O2O', '硬件']
-EXP = ['不限', '1年', '1-3年', '3-5年', '5-10年', '10年以上']
-EDUCATION = ['不限学历', '专科', '本科', '硕士', '博士']
-DEFAULT_LOGO = 'https://www.zhipin.com/v2/chat_v2/images/v2/defaultlogov2.jpg'
+FINANCE_STAGE = ["未融资", "天使轮", "A轮", "B轮", "C轮", "D轮及以上", "上市公司", "不需要融资"]
+FIELD = ["移动互联网", "电子商务", "金融", "企业服务", "教育", "文化娱乐", "游戏", "O2O", "硬件"]
+EXP = ["不限", "1年", "1-3年", "3-5年", "5-10年", "10年以上"]
+EDUCATION = ["不限学历", "专科", "本科", "硕士", "博士"]
+DEFAULT_LOGO = "https://www.zhipin.com/v2/chat_v2/images/v2/defaultlogov2.jpg"
 
 
 class Base(db.Model):
     __abstract__ = True
 
     created_at = db.Column(db.DateTime, default=datetime.now)
-    updated_at = db.Column(db.DateTime,
-                           default=datetime.now,
-                           onupdate=datetime.now)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     def __repr__(self):
-        return '<{}: {}>'.format(self.__class__.__name__, self.name)
+        return "<{}: {}>".format(self.__class__.__name__, self.name)
 
 
 class UserBase(Base, UserMixin):
@@ -38,7 +36,7 @@ class UserBase(Base, UserMixin):
 
     email = db.Column(db.String(64), unique=True, nullable=False)
     # phone = db.Column(db.Integer, unique=True, index=True, nullable=False)
-    _password = db.Column('password', db.String(128), nullable=False)
+    _password = db.Column("password", db.String(128), nullable=False)
     is_enable = db.Column(db.Boolean, default=True, index=True)
 
     @property
@@ -62,8 +60,8 @@ class UserBase(Base, UserMixin):
         return check_password_hash(self._password, password)
 
 
-class MyUser( UserBase ):
-    __tablename__ = 'user'
+class MyUser(UserBase):
+    __tablename__ = "user"
 
     id = db.Column(db.BigInteger, primary_key=True)
     name = db.Column(db.String(8), nullable=False)
@@ -71,11 +69,13 @@ class MyUser( UserBase ):
     role = db.Column(db.SmallInteger, default=UserBase.ROLE_USER)
 
 
-event.listen( MyUser.__table__, "after_create", DDL( "ALTER TABLE user AUTO_INCREMENT = 100000000" ) )
+event.listen(
+    MyUser.__table__, "after_create", DDL("ALTER TABLE user AUTO_INCREMENT = 100000000")
+)
 
 
-class MyCompany( UserBase ):
-    __tablename__ = 'company'
+class MyCompany(UserBase):
+    __tablename__ = "company"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True, nullable=False)
@@ -97,14 +97,16 @@ class MyCompany( UserBase ):
 
 
 class Job(Base):
-    __tablename__ = 'job'
+    __tablename__ = "job"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False)
     salary_min = db.Column(db.SmallInteger, nullable=False, index=True)
     salary_max = db.Column(db.SmallInteger, nullable=False, index=True)
-    company_id = db.Column(db.Integer, db.ForeignKey('company.id', ondelete='CASCADE'))
-    company = db.relationship('MyCompany', uselist=False, backref=db.backref('jobs', lazy='dynamic'))
+    company_id = db.Column(db.Integer, db.ForeignKey("company.id", ondelete="CASCADE"))
+    company = db.relationship(
+        "MyCompany", uselist=False, backref=db.backref("jobs", lazy="dynamic")
+    )
     # 职位描述
     description = db.Column(db.Text)
     # 职位待遇
@@ -122,13 +124,13 @@ class Job(Base):
 
     @property
     def url(self):
-        return url_for('job.detail', course_id=self.id)
+        return url_for("job.detail", course_id=self.id)
 
     @property
     def tag_list(self):
-        if self.tags and '，' in self.tags:
-            return self.tags.split('，')
-        return self.tags.split(',')
+        if self.tags and "，" in self.tags:
+            return self.tags.split("，")
+        return self.tags.split(",")
 
     def is_applied(self):
         delivery = current_user.delivery.filter_by(job_id=self.id).first()
@@ -136,20 +138,26 @@ class Job(Base):
 
 
 class Delivery(Base):
-    __tablename__ = 'delivery'
+    __tablename__ = "delivery"
 
     STATUS_WAITTING = 1
     STATUS_REJECT = 2
     STATUS_ACCEPT = 3
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column( db.String( 64 ), default='None')
-    job_id = db.Column(db.Integer, db.ForeignKey('job.id', ondelete='SET NULL'))
-    job = db.relationship('Job', uselist=False, backref=db.backref('delivery', lazy='dynamic'))
-    user_id = db.Column(db.BigInteger, db.ForeignKey('user.id', ondelete='SET NULL'))
-    user = db.relationship('MyUser', uselist=False, backref=db.backref('delivery', lazy='dynamic'))
-    company_id = db.Column(db.Integer, db.ForeignKey('company.id', ondelete='SET NULL'))
-    company = db.relationship('MyCompany', uselist=False, backref=db.backref('delivery', lazy='dynamic'))
+    name = db.Column(db.String(64), default="None")
+    job_id = db.Column(db.Integer, db.ForeignKey("job.id", ondelete="SET NULL"))
+    job = db.relationship(
+        "Job", uselist=False, backref=db.backref("delivery", lazy="dynamic")
+    )
+    user_id = db.Column(db.BigInteger, db.ForeignKey("user.id", ondelete="SET NULL"))
+    user = db.relationship(
+        "MyUser", uselist=False, backref=db.backref("delivery", lazy="dynamic")
+    )
+    company_id = db.Column(db.Integer, db.ForeignKey("company.id", ondelete="SET NULL"))
+    company = db.relationship(
+        "MyCompany", uselist=False, backref=db.backref("delivery", lazy="dynamic")
+    )
     resume = db.Column(db.String(128))
     status = db.Column(db.SmallInteger, default=STATUS_WAITTING, index=True)
     company_response = db.Column(db.String(256))
